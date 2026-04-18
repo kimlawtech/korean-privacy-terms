@@ -1,0 +1,73 @@
+# 가상 쇼핑몰 "모카샵" 인터뷰 결과
+# E2E 검증에 사용된 입력 예시
+
+serviceName: "모카샵"
+serviceDescription: "커피 원두 온라인 판매 플랫폼"
+operatorName: "주식회사 모카"
+domain: "mocashop.kr"
+serviceType: "쇼핑몰"
+effectiveDate: "2026-04-18"
+lastRevisedDate: "2026-04-18"
+mailingAddress: "서울특별시 강남구 테헤란로 123, 10층"
+isEcommerce: true
+
+requiredItems:
+  - { name: "이름", purpose: "주문·배송" }
+  - { name: "이메일", purpose: "주문확인·공지" }
+  - { name: "전화번호", purpose: "배송 연락" }
+  - { name: "배송지 주소", purpose: "상품 발송" }
+
+optionalItems: []
+
+collectsSensitive: false
+collectsIdentifier: false
+
+purposes:
+  - category: "회원 관리"
+    description: "회원 식별, 본인 확인, 부정 이용 방지"
+  - category: "서비스 제공"
+    description: "주문·결제·배송, 고객 문의 응대, 서비스 개선 통계"
+
+retentionPeriods:
+  - { purpose: "회원 정보", period: "회원 탈퇴 시까지", legalBasis: "회원 서비스 계약" }
+  - { purpose: "계약·청약철회 기록", period: "5년", legalBasis: "전자상거래법 §6" }
+  - { purpose: "대금결제 및 재화공급 기록", period: "5년", legalBasis: "전자상거래법 §6" }
+  - { purpose: "소비자 불만·분쟁처리 기록", period: "3년", legalBasis: "전자상거래법 §6" }
+
+providesToThirdParty: false
+thirdParties: []
+
+hasProcessors: true
+processors:
+  - { name: "Stripe", task: "결제 처리", period: "계약 종료 시까지", country: "미국" }
+  - { name: "AWS", task: "이미지·파일 저장", period: "계약 종료 시까지", country: "미국" }
+  - { name: "SendGrid", task: "이메일 발송", period: "계약 종료 시까지", country: "미국" }
+
+cpoName: "김보호"
+cpoTitle: "CTO"
+cpoPhone: "02-1234-5678"
+cpoEmail: "privacy@mocashop.kr"
+privacyEmail: "privacy@mocashop.kr"
+privacyPhone: "02-1234-5678"
+hasComplaintDepartment: false
+
+services:
+  - "커피 원두 및 관련 상품 판매"
+  - "주문 및 배송 서비스"
+  - "회원 관리 서비스"
+  - "결제 및 환불 처리"
+
+isChildFriendly: false
+hasAutomatedDecision: false
+isOverseasOperator: false
+hasDataPortability: false
+hasBehavioralAds: false
+
+revisionHistory:
+  - { date: "2026-04-18", description: "최초 제정" }
+
+# Claude가 Step B에서 계산하는 파생 변수:
+# collectedItemsSummary = "이름, 이메일, 전화번호, 배송지 주소 등"
+# purposesSummary = "회원 관리 · 서비스 제공"
+# thirdPartySummary = "제공하지 않음"
+# processorSummary = "3개사 위탁"
