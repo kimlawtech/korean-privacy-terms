@@ -143,6 +143,10 @@ Pull Request 환영합니다. 특히:
 
 ## License
 
-Apache License 2.0. 자세한 내용은 [LICENSE](./LICENSE) 참조.
+**Apache License 2.0** — 자세한 내용은 [LICENSE](./LICENSE) 참조.
+Copyright 2026 kimlawtech (SpeciAI).
+
+## Disclaimer
 
 본 스킬이 생성하는 문서는 **참고용 초안**이며 법률 자문이 아닙니다. 실서비스 배포 전 반드시 변호사 검토를 받으세요.
+자세한 면책 고지는 [DISCLAIMER.md](./DISCLAIMER.md) 참조.
