@@ -16,7 +16,7 @@
 > → [discord.gg/qmCbMaER](https://discord.gg/qmCbMaER)
 
 **라이선스**: Apache-2.0
-**버전**: 1.0.0
+**버전**: 2.0.0
 **저자**: [@kimlawtech](https://github.com/kimlawtech)
 
 ## 특징
@@ -76,34 +76,28 @@ Claude Code에서:
 - **shadcn/ui** (자동 설치 지원)
 - **MDX** (자동 설치 지원)
 
-## 디렉토리 구조
+## 디렉토리 구조 (v2.0)
 
 ```
 korean-privacy-terms/
 ├── SKILL.md                    # 진입점
-├── references/                 # 법령·지침 레퍼런스
-│   ├── law-checklist-2026.md
-│   ├── guideline-2025-04.md
-│   ├── automated-decision.md
-│   ├── data-portability.md
-│   ├── ftc-standard-terms.md
-│   ├── behavioral-info.md
-│   ├── benchmarks.md
-│   └── service-type-matrix.md
-├── templates/                  # 변수 치환 템플릿
-│   ├── privacy-policy.mdx.tmpl
-│   └── terms-of-service.mdx.tmpl
-├── components/                 # React 컴포넌트 (원본; 설치 시 프로젝트 해당 경로로 복사)
-│   ├── mdx-components.tsx      # → 프로젝트 루트
-│   ├── ConsentModal.tsx        # → components/legal/
-│   ├── CookieBanner.tsx        # → components/legal/
-│   ├── LabelingCard.tsx        # → components/legal/
-│   ├── PrivacyPage.tsx         # → app/privacy/page.tsx
-│   ├── TermsPage.tsx           # → app/terms/page.tsx
-│   └── icons/README.md         # lucide-react 사용 안내
-└── scripts/
-    ├── interview.md
-    └── install.md
+├── ROADMAP.md                  # 장기 확장 계획 (CCPA·APPI·PIPL 등)
+│
+├── jurisdictions/              # 관할법별 법령·템플릿
+│   ├── kr-pipa/                # 🇰🇷 한국 PIPA + 약관규제법
+│   └── eu-gdpr/                # 🇪🇺 EU GDPR (v2.0 신규)
+│
+├── templates/                  # 한국법 기본 템플릿 (기존)
+│   ├── privacy-policy.mdx.tmpl        # 한국어
+│   ├── privacy-policy.en.mdx.tmpl     # 영문 병기 (v1.1.0)
+│   ├── terms-of-service.mdx.tmpl      # 한국어
+│   └── terms-of-service.en.mdx.tmpl   # 영문 병기 (v1.1.0)
+│
+├── references/                 # 한국법 레퍼런스 (10개)
+├── assets/components/          # React 컴포넌트 원본
+├── assets/config/              # next.config, mdx-components 템플릿
+├── scripts/                    # interview, render, install 절차
+└── examples/                   # 입출력 페어
 ```
 
 ## 법적 면책
