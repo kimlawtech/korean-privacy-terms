@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a0a"/>
+      <stop offset="1" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <style>
+      text { font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; fill: #fafafa; }
+      .mono { font-family: 'SF Mono', Menlo, monospace; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative grid lines -->
+  <g stroke="#262626" stroke-width="1">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="510" x2="1200" y2="510"/>
+    <line x1="80" y1="0" x2="80" y2="630"/>
+    <line x1="1120" y1="0" x2="1120" y2="630"/>
+  </g>
+
+  <!-- Top label -->
+  <text x="80" y="90" font-size="18" letter-spacing="3" fill="#737373">CLAUDE CODE SKILL · APACHE-2.0</text>
+
+  <!-- Main title -->
+  <text x="80" y="230" font-size="64" font-weight="700" letter-spacing="-1">한국 법령 기반</text>
+  <text x="80" y="310" font-size="64" font-weight="700" letter-spacing="-1">개인정보처리방침·이용약관</text>
+  <text x="80" y="380" font-size="48" font-weight="500" fill="#a3a3a3">10분 만에 자동 생성</text>
+
+  <!-- Feature chips -->
+  <g transform="translate(80, 430)">
+    <rect x="0" y="0" width="200" height="40" rx="20" fill="none" stroke="#404040"/>
+    <text x="100" y="26" font-size="15" text-anchor="middle" fill="#d4d4d4">2025.4 작성지침</text>
+
+    <rect x="215" y="0" width="200" height="40" rx="20" fill="none" stroke="#404040"/>
+    <text x="315" y="26" font-size="15" text-anchor="middle" fill="#d4d4d4">2026.3 개정법</text>
+
+    <rect x="430" y="0" width="140" height="40" rx="20" fill="none" stroke="#404040"/>
+    <text x="500" y="26" font-size="15" text-anchor="middle" fill="#d4d4d4">Next.js 13~16</text>
+
+    <rect x="585" y="0" width="135" height="40" rx="20" fill="none" stroke="#404040"/>
+    <text x="652" y="26" font-size="15" text-anchor="middle" fill="#d4d4d4">shadcn/ui</text>
+  </g>
+
+  <!-- Repo -->
+  <text x="80" y="570" class="mono" font-size="20" fill="#737373">→ github.com/kimlawtech/korean-privacy-terms</text>
+
+  <!-- Right side badge -->
+  <g transform="translate(970, 195)">
+    <rect x="0" y="0" width="150" height="150" rx="75" fill="none" stroke="#fafafa" stroke-width="2"/>
+    <text x="75" y="70" font-size="14" letter-spacing="2" text-anchor="middle" fill="#a3a3a3">OPEN SOURCE</text>
+    <text x="75" y="100" font-size="36" font-weight="700" text-anchor="middle">v1.0</text>
+  </g>
+</svg>

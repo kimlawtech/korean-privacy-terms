@@ -1,5 +1,7 @@
 # korean-privacy-terms
 
+![banner](.github/assets/og-image.png)
+
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-orange)
 ![Next.js](https://img.shields.io/badge/Next.js-13--16-black)

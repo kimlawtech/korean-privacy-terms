@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>OG Image</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  body { margin: 0; background: #f4f4f5; font-family: 'Pretendard Variable', -apple-system, system-ui, sans-serif; }
+  .card {
+    width: 1200px; height: 630px; background: #0a0a0a; color: #fafafa;
+    padding: 80px; box-sizing: border-box; position: relative;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .label { font-size: 16px; letter-spacing: 3px; color: #737373; font-weight: 500; }
+  .title { font-size: 64px; font-weight: 700; line-height: 1.2; letter-spacing: -1px; margin: 32px 0 0; }
+  .sub { font-size: 40px; color: #a3a3a3; font-weight: 500; margin-top: 24px; }
+  .chips { display: flex; gap: 12px; margin-top: 48px; }
+  .chip { border: 1px solid #404040; padding: 10px 20px; border-radius: 999px; font-size: 15px; color: #d4d4d4; }
+  .footer { display: flex; justify-content: space-between; align-items: flex-end; }
+  .repo { font-family: 'SF Mono', Menlo, monospace; font-size: 20px; color: #737373; }
+  .badge {
+    width: 150px; height: 150px; border: 2px solid #fafafa; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .badge-label { font-size: 13px; letter-spacing: 2px; color: #a3a3a3; }
+  .badge-version { font-size: 36px; font-weight: 700; margin-top: 6px; }
+  .grid-top, .grid-bottom { position: absolute; left: 0; right: 0; height: 1px; background: #262626; }
+  .grid-top { top: 120px; } .grid-bottom { top: 510px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid-top"></div>
+    <div class="grid-bottom"></div>
+
+    <div>
+      <div class="label">CLAUDE CODE SKILL · APACHE-2.0</div>
+      <h1 class="title">한국 법령 기반<br>개인정보처리방침·이용약관</h1>
+      <div class="sub">10분 만에 자동 생성</div>
+      <div class="chips">
+        <div class="chip">2025.4 작성지침</div>
+        <div class="chip">2026.3 개정법</div>
+        <div class="chip">Next.js 13~16</div>
+        <div class="chip">shadcn/ui</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="repo">→ github.com/kimlawtech/korean-privacy-terms</div>
+      <div class="badge">
+        <div class="badge-label">OPEN SOURCE</div>
+        <div class="badge-version">v1.0</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 사용법: 이 파일을 브라우저로 열고 .card 영역 스크린샷 (CMD+Shift+4 후 박스 선택)
+    // 또는 puppeteer/playwright로 자동 캡처:
+    //   npx playwright screenshot --viewport-size 1200,630 og-image.html og-1200x630.png
+  </script>
+</body>
+</html>
