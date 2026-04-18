@@ -51,6 +51,61 @@ Q: CPO 정보를 입력하세요.
 
 ---
 
+## Step -1. 타겟 관할법 선택 (v2.0 신규)
+
+서비스가 어느 지역 사용자를 대상으로 하는지에 따라 적용 법령이 다릅니다.
+
+```
+어느 법령에 맞춰 만들까요?
+
+1) 🇰🇷 한국만 (기본값) — 한국 PIPA + 약관규제법 + 전자상거래법
+   → 한국 사용자만 대상인 서비스
+
+2) 🇪🇺 EU만 — GDPR + ePrivacy
+   → EU 사용자 대상, 한국 법 불필요
+
+3) 🇰🇷+🇪🇺 한국+EU 병기 (글로벌 서비스 권장)
+   → 두 법령 모두 준수 필요, 별도 /privacy, /privacy/eu 라우트
+
+4) 🇺🇸 미국 CCPA — 로드맵 (v3.0)
+```
+
+결과:
+```yaml
+jurisdictions: ["kr-pipa"] | ["eu-gdpr"] | ["kr-pipa", "eu-gdpr"]
+```
+
+jurisdictions에 따라 사용할 템플릿 폴더 결정:
+- `kr-pipa` → `jurisdictions/kr-pipa/` + 기존 `references/`
+- `eu-gdpr` → `jurisdictions/eu-gdpr/`
+- 둘 다 → 두 폴더 모두 사용, 두 세트의 문서 생성
+
+## Step 0. 출력 언어 선택 (v1.1.0 신규)
+
+```
+처리방침·이용약관을 어떤 언어로 만들까요?
+
+1) 한국어만 (기본값)
+2) 영문만 (해외 사용자 대상, 외국인 개발자)
+3) 한/영 병기 — 두 개 생성 (글로벌 서비스 권장)
+
+선택에 따라 페이지 라우트가 달라집니다.
+  한국어만 → /privacy, /terms
+  영문만   → /privacy, /terms (영문 콘텐츠)
+  병기    → /privacy, /terms (한국어) + /en/privacy, /en/terms (영문)
+
+UI 컴포넌트(ConsentModal, CookieBanner)는 `locale` prop으로 런타임 전환 가능합니다.
+```
+
+결정 결과는 아래 변수로 보관:
+
+```yaml
+outputLocale: ko | en | both
+defaultLocale: ko  # 병기일 때 기본 언어
+```
+
+**중요**: 법령 내용은 언제나 **한국법(PIPA, 약관규제법, 전자상거래법) 기준**입니다. 영문판은 한국법 조문을 영어로 **번역한 것**이지 미국법·GDPR 대응 문서가 아닙니다. 이 점을 사용자에게 명확히 고지해야 합니다.
+
 ## Step 1. 서비스 소개
 
 ### Q1-1. 서비스 이름

@@ -16,6 +16,7 @@ export type CookieConsent = {
 
 type Variant = "bottom-bar" | "floating" | "top-bar" | "center-modal"
 type IconSet = "lucide" | "none"
+type Locale = "ko" | "en"
 
 type Props = {
   policyHref?: string
@@ -23,7 +24,57 @@ type Props = {
   iconSet?: IconSet
   /** 첫 방문 모달 차단형에서 사용. true면 동의 전 사이트 이용 불가 암시 */
   blocking?: boolean
+  locale?: Locale
 }
+
+const LABELS = {
+  ko: {
+    heading: "쿠키 사용 안내",
+    description:
+      "본 사이트는 이용자 경험 향상을 위해 쿠키를 사용합니다. 필수 쿠키는 서비스 제공에 필요하며, 그 외 쿠키는 선택 사항입니다.",
+    learnMore: "자세히 보기",
+    close: "닫기",
+    modalTitle: "쿠키 사용 동의",
+    modalDescription: "서비스 제공 및 맞춤 경험을 위해 쿠키 사용을 허락해주세요.",
+    hideSettings: "설정 숨기기",
+    openSettings: "쿠키 설정",
+    rejectAll: "모두 거부",
+    acceptSelected: "선택 동의",
+    acceptAll: "모두 동의",
+    essentialLabel: "필수 쿠키",
+    essentialDesc: "로그인, 보안 등 서비스 운영에 필수적입니다.",
+    functionalLabel: "기능 쿠키",
+    functionalDesc: "언어 설정, 최근 본 항목 등 이용 편의를 제공합니다.",
+    analyticsLabel: "분석 쿠키",
+    analyticsDesc: "서비스 개선을 위한 방문 통계를 수집합니다.",
+    marketingLabel: "광고 쿠키",
+    marketingDesc: "관심사 기반 맞춤 광고에 활용됩니다.",
+    requiredBadge: "필수",
+  },
+  en: {
+    heading: "Cookie Notice",
+    description:
+      "This site uses cookies to improve your experience. Essential cookies are required to operate the site; others are optional.",
+    learnMore: "Learn more",
+    close: "Close",
+    modalTitle: "Cookie Consent",
+    modalDescription: "Please allow cookies to enable service delivery and personalized experience.",
+    hideSettings: "Hide settings",
+    openSettings: "Cookie settings",
+    rejectAll: "Reject all",
+    acceptSelected: "Accept selected",
+    acceptAll: "Accept all",
+    essentialLabel: "Essential",
+    essentialDesc: "Required for login, security, and core service operations.",
+    functionalLabel: "Functional",
+    functionalDesc: "Language, recently viewed items, and other convenience features.",
+    analyticsLabel: "Analytics",
+    analyticsDesc: "Collects visit statistics to improve the service.",
+    marketingLabel: "Advertising",
+    marketingDesc: "Used for interest-based personalized advertising.",
+    requiredBadge: "Required",
+  },
+} as const
 
 const STORAGE_KEY = "cookie-consent"
 
@@ -78,7 +129,9 @@ export function CookieBanner({
   variant = "bottom-bar",
   iconSet = "lucide",
   blocking = false,
+  locale = "ko",
 }: Props) {
+  const t = LABELS[locale]
   const [mounted, setMounted] = React.useState(false)
   const [visible, setVisible] = React.useState(false)
   const [showSettings, setShowSettings] = React.useState(false)
@@ -120,11 +173,11 @@ export function CookieBanner({
           </div>
         )}
         <div className="flex-1">
-          <h3 className="font-semibold">쿠키 사용 안내</h3>
+          <h3 className="font-semibold">{t.heading}</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            본 사이트는 이용자 경험 향상을 위해 쿠키를 사용합니다. 필수 쿠키는 서비스 제공에 필요하며, 그 외 쿠키는 선택 사항입니다.{" "}
+            {t.description}{" "}
             <Link href={policyHref} className="text-primary hover:underline">
-              자세히 보기
+              {t.learnMore}
             </Link>
           </p>
         </div>
@@ -132,9 +185,9 @@ export function CookieBanner({
           <button
             onClick={() => setVisible(false)}
             className="text-muted-foreground hover:text-foreground"
-            aria-label="닫기"
+            aria-label={t.close}
           >
-            {showIcons ? <X className="h-4 w-4" /> : <span>닫기</span>}
+            {showIcons ? <X className="h-4 w-4" /> : <span>{t.close}</span>}
           </button>
         )}
       </div>
@@ -142,26 +195,27 @@ export function CookieBanner({
       {showSettings && (
         <div className="mt-4 space-y-3 rounded-lg border bg-muted/30 p-4">
           <CookieRow
-            label="필수 쿠키"
-            description="로그인, 보안 등 서비스 운영에 필수적입니다."
+            label={t.essentialLabel}
+            description={t.essentialDesc}
             checked
             disabled
+            requiredBadge={t.requiredBadge}
           />
           <CookieRow
-            label="기능 쿠키"
-            description="언어 설정, 최근 본 항목 등 이용 편의를 제공합니다."
+            label={t.functionalLabel}
+            description={t.functionalDesc}
             checked={functional}
             onChange={setFunctional}
           />
           <CookieRow
-            label="분석 쿠키"
-            description="서비스 개선을 위한 방문 통계를 수집합니다."
+            label={t.analyticsLabel}
+            description={t.analyticsDesc}
             checked={analytics}
             onChange={setAnalytics}
           />
           <CookieRow
-            label="광고 쿠키"
-            description="관심사 기반 맞춤 광고에 활용됩니다."
+            label={t.marketingLabel}
+            description={t.marketingDesc}
             checked={marketing}
             onChange={setMarketing}
           />
@@ -175,15 +229,15 @@ export function CookieBanner({
           className="gap-2"
         >
           {showIcons && <Settings2 className="h-4 w-4" />}
-          {showSettings ? "설정 숨기기" : "쿠키 설정"}
+          {showSettings ? t.hideSettings : t.openSettings}
         </Button>
         <Button variant="outline" onClick={rejectAll}>
-          모두 거부
+          {t.rejectAll}
         </Button>
         {showSettings ? (
-          <Button onClick={acceptSelected}>선택 동의</Button>
+          <Button onClick={acceptSelected}>{t.acceptSelected}</Button>
         ) : (
-          <Button onClick={acceptAll}>모두 동의</Button>
+          <Button onClick={acceptAll}>{t.acceptAll}</Button>
         )}
       </div>
     </>
@@ -196,11 +250,9 @@ export function CookieBanner({
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               {showIcons && <Cookie className="h-5 w-5 text-primary" />}
-              쿠키 사용 동의
+              {t.modalTitle}
             </DialogTitle>
-            <DialogDescription>
-              서비스 제공 및 맞춤 경험을 위해 쿠키 사용을 허락해주세요.
-            </DialogDescription>
+            <DialogDescription>{t.modalDescription}</DialogDescription>
           </DialogHeader>
           <div className="mt-2">{body}</div>
         </DialogContent>
@@ -221,12 +273,14 @@ function CookieRow({
   checked,
   onChange,
   disabled,
+  requiredBadge = "필수",
 }: {
   label: string
   description: string
   checked: boolean
   onChange?: (v: boolean) => void
   disabled?: boolean
+  requiredBadge?: string
 }) {
   return (
     <div className="flex items-start gap-3">
@@ -241,7 +295,7 @@ function CookieRow({
           <span className="text-sm font-medium">{label}</span>
           {disabled && (
             <span className="rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-              필수
+              {requiredBadge}
             </span>
           )}
         </div>

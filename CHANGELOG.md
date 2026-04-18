@@ -5,6 +5,33 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [2.0.0] - 2026-04-19
+
+### 추가
+- **EU GDPR 관할법 지원** (`jurisdictions/eu-gdpr/`)
+  - GDPR 법령 체크리스트 (Art. 13·14 의무 공개, 8대 이용자 권리, 법적 근거 6종, 특수 카테고리, 과태료)
+  - GDPR Privacy Notice 영문 템플릿
+- `jurisdictions/` 폴더 구조 도입 — 관할법별 모듈화
+- 인터뷰 Step -1: 타겟 관할법 선택 (KR / EU / KR+EU / US 로드맵)
+- `ROADMAP.md` — CCPA·APPI·PIPL 등 장기 확장 계획
+
+### 변경
+- SKILL.md에 관할법 지원 섹션 추가
+
+## [1.1.0] - 2026-04-19
+
+### 추가
+- **영문 출력 병기 지원**
+  - `templates/privacy-policy.en.mdx.tmpl` — 한국 PIPA 기반 영문 처리방침
+  - `templates/terms-of-service.en.mdx.tmpl` — KFTC 표준약관 영문판
+- ConsentModal·CookieBanner에 `locale="ko" | "en"` prop 추가
+- 인터뷰 Step 0: 출력 언어 선택 (한국어 / 영문 / 병기)
+- 병기 선택 시 `/en/privacy`, `/en/terms` 라우트 자동 생성
+
+### 변경
+- 모든 UI 컴포넌트 텍스트를 `LABELS` 사전으로 분리
+- SKILL.md 4단계 파일 생성에 locale별 분기 추가
+
 ## [1.0.0] - 2026-04-18
 
 ### 첫 공개 릴리스

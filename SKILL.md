@@ -49,6 +49,16 @@ AI로 빠르게 해결하는 창업자·변호사 커뮤니티예요.
 - 한국 사용자 대상 웹서비스에서 법정 공개 문서가 필요한 모든 경우
 - 회원가입 폼에 동의 모달이 필요한 경우
 
+## 관할법 지원 (v2.0)
+
+- **🇰🇷 한국 (PIPA + 약관규제법 + 전자상거래법)** — `references/`, `jurisdictions/kr-pipa/`
+- **🇪🇺 EU (GDPR + ePrivacy)** — `jurisdictions/eu-gdpr/` (v2.0 신규)
+- 🇺🇸 미국 CCPA — 로드맵 (`ROADMAP.md`)
+- 🇯🇵 일본 APPI — 로드맵
+- 🇨🇳 중국 PIPL — 로드맵
+
+인터뷰 Step 0.5에서 타겟 관할을 묻고 그에 맞는 jurisdiction 폴더를 사용.
+
 ## 법령 근거 (MUST READ)
 
 작업 시작 전 반드시 다음 레퍼런스를 읽는다:
@@ -190,15 +200,34 @@ styleVariant:
 
 경로는 1단계에서 감지한 `src-app` / `root-app` 구조에 따라 분기. 아래는 `src-app` 기준.
 
-- `src/mdx-components.tsx` — **App Router MDX 렌더링 필수** (루트 구조면 프로젝트 루트)
-- `src/content/legal/privacy-policy.mdx` — 처리방침 본문 (변수 치환 완료)
-- `src/content/legal/terms-of-service.mdx` — 이용약관 본문
+공통 (`outputLocale` 무관):
+- `src/mdx-components.tsx` — **App Router MDX 렌더링 필수**
 - `src/app/privacy/page.tsx` — 처리방침 페이지 라우트
 - `src/app/terms/page.tsx` — 이용약관 페이지 라우트
-- `src/components/legal/ConsentModal.tsx` — 회원가입 동의 모달
-- `src/components/legal/CookieBanner.tsx` — 쿠키 동의 배너
-- `src/components/legal/LabelingCard.tsx` — 카카오식 라벨링 6종
-- (아이콘은 lucide-react 사용, 별도 SVG 번들 없음)
+- `src/components/legal/ConsentModal.tsx`
+- `src/components/legal/CookieBanner.tsx`
+- `src/components/legal/LabelingCard.tsx`
+
+**`outputLocale: ko`** (기본):
+- `src/content/legal/privacy-policy.mdx` — 한국어
+- `src/content/legal/terms-of-service.mdx` — 한국어
+- 페이지에 `locale="ko"` props
+
+**`outputLocale: en`**:
+- `src/content/legal/privacy-policy.mdx` — 영문 (`privacy-policy.en.mdx.tmpl` 치환)
+- `src/content/legal/terms-of-service.mdx` — 영문
+- 페이지·컴포넌트에 `locale="en"` props
+
+**`outputLocale: both`** (한/영 병기):
+- `src/content/legal/privacy-policy.mdx` — 한국어
+- `src/content/legal/terms-of-service.mdx` — 한국어
+- `src/content/legal/privacy-policy.en.mdx` — 영문
+- `src/content/legal/terms-of-service.en.mdx` — 영문
+- `src/app/en/privacy/page.tsx` — 영문 라우트
+- `src/app/en/terms/page.tsx` — 영문 라우트
+- Footer에 언어 전환 링크 제공 안내
+
+(아이콘은 lucide-react 사용, 별도 SVG 번들 없음)
 
 ### 5단계: 필수 검증 (생성 후)
 다음 체크리스트를 반드시 만족해야 한다. 하나라도 누락 시 경고 후 수정.

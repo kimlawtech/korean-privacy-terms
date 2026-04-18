@@ -1,0 +1,163 @@
+{/*
+This Privacy Notice is drafted in accordance with the General Data Protection Regulation (Regulation (EU) 2016/679) ("GDPR") and the ePrivacy Directive 2002/58/EC as implemented in EU member states.
+This draft reflects EU law as of the most recent review. Independent legal review by qualified EU/EEA counsel is required before production deployment.
+Penalties under GDPR Article 83 may reach up to €20 million or 4% of global annual turnover.
+*/}
+
+# Privacy Notice for {{serviceName}}
+
+This Privacy Notice explains how {{operatorName}} ("we", "us", "our") collects, uses, and protects your personal data when you use {{serviceName}} (the "Service").
+
+Effective Date {{effectiveDate}}
+Last Updated {{lastRevisedDate}}
+
+## 1. Controller and Contact
+
+**Data Controller**: {{operatorName}}
+Address: {{operatorAddress}}
+Email: {{contactEmail}}
+
+{{#if hasDPO}}
+**Data Protection Officer (DPO)**
+Name: {{dpoName}}
+Email: {{dpoEmail}}
+{{/if}}
+
+{{#if hasEuRepresentative}}
+**EU Representative (Art. 27)**
+Name: {{euRepName}}
+Address: {{euRepAddress}}
+Email: {{euRepEmail}}
+{{/if}}
+
+## 2. Personal Data We Collect
+
+{{#each dataCategories}}
+### {{this.category}}
+Items: {{this.items}}
+Source: {{this.source}}
+{{/each}}
+
+{{#if collectsSpecialCategory}}
+### Special Categories (Article 9)
+
+We process the following special categories of personal data: {{specialCategoryItems}}.
+
+Legal basis: {{specialCategoryBasis}}.
+
+Explicit consent is obtained where required.
+{{/if}}
+
+## 3. Purposes and Legal Bases (Article 6)
+
+{{#each purposes}}
+### {{this.purpose}}
+Legal basis: {{this.legalBasis}}
+{{#if this.legitimateInterestDetail}}
+Specific legitimate interest: {{this.legitimateInterestDetail}}
+{{/if}}
+{{/each}}
+
+## 4. Recipients and Data Sharing
+
+{{#if hasRecipients}}
+We share personal data with the following recipients or categories of recipients:
+
+| Recipient | Purpose | Category |
+|-----------|---------|----------|
+{{#each recipients}}
+| {{this.name}} | {{this.purpose}} | {{this.category}} |
+{{/each}}
+{{else}}
+We do not share your personal data with third parties except as described in this Notice or required by law.
+{{/if}}
+
+## 5. International Transfers (Chapter V)
+
+{{#if hasInternationalTransfer}}
+We transfer personal data outside the European Economic Area (EEA) to the following countries:
+
+{{#each internationalTransfers}}
+- **{{this.country}}** — Safeguard: {{this.safeguard}} {{#if this.adequacyDecision}}(Adequacy decision under Art. 45){{/if}}
+{{/each}}
+
+Where Standard Contractual Clauses (SCCs) apply, copies are available upon request at {{contactEmail}}.
+{{else}}
+We do not transfer personal data outside the EEA.
+{{/if}}
+
+## 6. Retention
+
+{{#each retentionPeriods}}
+- **{{this.purpose}}**: {{this.period}}. Criteria: {{this.criteria}}
+{{/each}}
+
+After the retention period, data is deleted or anonymized.
+
+## 7. Your Rights Under GDPR
+
+You have the following rights regarding your personal data:
+
+- **Right of Access (Art. 15)** — obtain a copy of your data and information about processing
+- **Right to Rectification (Art. 16)** — correct inaccurate or incomplete data
+- **Right to Erasure (Art. 17)** — request deletion ("right to be forgotten") in certain circumstances
+- **Right to Restriction (Art. 18)** — restrict processing in certain circumstances
+- **Right to Data Portability (Art. 20)** — receive your data in structured, machine-readable format
+- **Right to Object (Art. 21)** — object to processing based on legitimate interests or direct marketing
+- **Right Not to Be Subject to Automated Decision-Making (Art. 22)** — including profiling with legal or similarly significant effects
+- **Right to Withdraw Consent (Art. 7(3))** — where consent is the legal basis, withdraw at any time
+
+To exercise any right, contact us at {{contactEmail}}. We will respond within **one month** (extendable by two months for complex requests, with notice).
+
+## 8. Right to Lodge a Complaint
+
+You have the right to lodge a complaint with your local data protection supervisory authority. A list is available at: https://edpb.europa.eu/about-edpb/about-edpb/members_en
+
+## 9. Cookies and Tracking Technologies
+
+{{#if usesCookies}}
+We use cookies and similar technologies. Non-essential cookies (analytics, advertising) are used only with your prior opt-in consent, obtained via our cookie banner.
+
+Detailed cookie information is available in our [Cookie Policy](/cookie-policy).
+{{else}}
+We do not use non-essential cookies.
+{{/if}}
+
+{{#if hasAutomatedDecision}}
+## 10. Automated Decision-Making (Article 22)
+
+We use automated decision-making, including profiling, in the following processing activities:
+
+{{#each automatedDecisions}}
+- **{{this.serviceName}}**
+  - Logic: {{this.logic}}
+  - Significance: {{this.significance}}
+  - Consequences: {{this.consequences}}
+{{/each}}
+
+You have the right not to be subject to a decision based solely on automated processing that produces legal effects or similarly significantly affects you. You may request human intervention, express your point of view, and contest the decision.
+{{/if}}
+
+## 11. Children
+
+{{#if isChildFriendly}}
+Where consent is used as the legal basis for processing a child's personal data in relation to information society services, such consent is valid only if the child is at least {{childAgeThreshold}} years old. For children below this age, we obtain consent from the holder of parental responsibility using {{parentalConsentMethod}}.
+{{else}}
+Our Service is not intended for children under 16. We do not knowingly collect personal data from children under 16.
+{{/if}}
+
+## 12. Security
+
+We implement appropriate technical and organizational measures including encryption at rest and in transit, access controls, regular security audits, and staff training.
+
+## 13. Changes to This Notice
+
+We may update this Notice. Material changes will be communicated at least 30 days before taking effect via email or prominent notice on the Service.
+
+Revision History:
+
+{{#each revisionHistory}}
+- {{this.date}} — {{this.description}}
+{{/each}}
+
+This Privacy Notice takes effect on {{effectiveDate}}.

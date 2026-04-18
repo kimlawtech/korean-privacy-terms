@@ -22,6 +22,7 @@ export type ConsentResult = Record<string, boolean>
 type Variant = "default" | "compact" | "large" | "minimal"
 type Size = "sm" | "md" | "lg" | "xl"
 type IconSet = "lucide" | "none"
+type Locale = "ko" | "en"
 
 type Props = {
   open: boolean
@@ -32,36 +33,59 @@ type Props = {
   variant?: Variant
   size?: Size
   iconSet?: IconSet
+  locale?: Locale
 }
 
-const DEFAULT_ITEMS: ConsentItem[] = [
-  {
-    key: "terms",
-    label: "이용약관 동의",
-    required: true,
-    href: "/terms",
-    description: "서비스 이용에 필요한 기본 약관입니다.",
+const LABELS = {
+  ko: {
+    title: (name: string) => `${name} 이용 동의`,
+    description: "서비스 이용을 위해 아래 내용을 확인하고 동의해주세요.",
+    selectAll: "전체 동의",
+    required: "필수",
+    optional: "선택",
+    view: "보기",
+    cancel: "취소",
+    confirm: "동의하고 계속",
+    detailAria: "상세 보기",
   },
-  {
-    key: "privacy",
-    label: "개인정보 수집·이용 동의",
-    required: true,
-    href: "/privacy",
-    description: "서비스 제공에 필요한 개인정보 처리에 동의합니다.",
+  en: {
+    title: (name: string) => `Agreement to Use ${name}`,
+    description: "Please review and agree to the following to use the service.",
+    selectAll: "Agree to all",
+    required: "Required",
+    optional: "Optional",
+    view: "View",
+    cancel: "Cancel",
+    confirm: "Agree & Continue",
+    detailAria: "View details",
   },
-  {
-    key: "age",
-    label: "만 14세 이상입니다",
-    required: true,
-    description: "14세 미만인 경우 법정대리인 동의가 필요합니다.",
-  },
-  {
-    key: "marketing",
-    label: "마케팅 정보 수신 동의",
-    required: false,
-    description: "이벤트·혜택 정보를 이메일/SMS로 받습니다. 언제든지 수신거부 가능합니다.",
-  },
+} as const
+
+const DEFAULT_ITEMS_KO: ConsentItem[] = [
+  { key: "terms", label: "이용약관 동의", required: true, href: "/terms",
+    description: "서비스 이용에 필요한 기본 약관입니다." },
+  { key: "privacy", label: "개인정보 수집·이용 동의", required: true, href: "/privacy",
+    description: "서비스 제공에 필요한 개인정보 처리에 동의합니다." },
+  { key: "age", label: "만 14세 이상입니다", required: true,
+    description: "14세 미만인 경우 법정대리인 동의가 필요합니다." },
+  { key: "marketing", label: "마케팅 정보 수신 동의", required: false,
+    description: "이벤트·혜택 정보를 이메일/SMS로 받습니다. 언제든지 수신거부 가능합니다." },
 ]
+
+const DEFAULT_ITEMS_EN: ConsentItem[] = [
+  { key: "terms", label: "I agree to the Terms of Service", required: true, href: "/terms",
+    description: "Basic terms required for using the service." },
+  { key: "privacy", label: "I consent to collection and use of personal information", required: true, href: "/privacy",
+    description: "Processing of personal information necessary for providing the service." },
+  { key: "age", label: "I am 14 years of age or older", required: true,
+    description: "Users under 14 require consent from a legal representative." },
+  { key: "marketing", label: "I agree to receive marketing information", required: false,
+    description: "Receive event and promotional info via email/SMS. You can unsubscribe anytime." },
+]
+
+function resolveDefaultItems(locale: Locale): ConsentItem[] {
+  return locale === "en" ? DEFAULT_ITEMS_EN : DEFAULT_ITEMS_KO
+}
 
 const SIZE_MAP: Record<Size, string> = {
   sm: "max-w-sm",
@@ -121,26 +145,30 @@ export function ConsentModal({
   open,
   onOpenChange,
   onConfirm,
-  serviceName = "서비스",
-  items = DEFAULT_ITEMS,
+  serviceName,
+  items,
   variant = "default",
   size = "md",
   iconSet = "lucide",
+  locale = "ko",
 }: Props) {
   const [checked, setChecked] = React.useState<ConsentResult>({})
   const [expanded, setExpanded] = React.useState<string | null>(null)
   const v = VARIANT_STYLES[variant]
   const showIcons = iconSet !== "none" && v.showIcons
+  const t = LABELS[locale]
+  const resolvedItems = items ?? resolveDefaultItems(locale)
+  const resolvedServiceName = serviceName ?? (locale === "en" ? "Service" : "서비스")
 
-  const allRequiredChecked = items
+  const allRequiredChecked = resolvedItems
     .filter((i) => i.required)
     .every((i) => checked[i.key])
 
-  const allChecked = items.every((i) => checked[i.key])
+  const allChecked = resolvedItems.every((i) => checked[i.key])
 
   const toggleAll = (value: boolean) => {
     const next: ConsentResult = {}
-    items.forEach((i) => (next[i.key] = value))
+    resolvedItems.forEach((i) => (next[i.key] = value))
     setChecked(next)
   }
 
@@ -160,11 +188,9 @@ export function ConsentModal({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-xl">
             {showIcons && <ShieldCheck className="h-5 w-5 text-primary" />}
-            {serviceName} 이용 동의
+            {t.title(resolvedServiceName)}
           </DialogTitle>
-          <DialogDescription>
-            서비스 이용을 위해 아래 내용을 확인하고 동의해주세요.
-          </DialogDescription>
+          <DialogDescription>{t.description}</DialogDescription>
         </DialogHeader>
 
         <div className={`flex items-center gap-3 ${v.allBlock}`}>
@@ -174,7 +200,7 @@ export function ConsentModal({
             onCheckedChange={(b) => toggleAll(Boolean(b))}
           />
           <label htmlFor="consent-all" className="flex-1 cursor-pointer font-medium">
-            전체 동의
+            {t.selectAll}
           </label>
         </div>
 
@@ -182,7 +208,7 @@ export function ConsentModal({
 
         <ScrollArea className={`${v.scrollHeight} pr-2`}>
           <div className="space-y-2">
-            {items.map((item) => {
+            {resolvedItems.map((item) => {
               const isOpen = expanded === item.key
               return (
                 <div key={item.key} className={`${v.itemBlock} ${v.itemPadding}`}>
@@ -207,7 +233,7 @@ export function ConsentModal({
                               : "text-muted-foreground"
                           }
                         >
-                          [{item.required ? "필수" : "선택"}]
+                          [{item.required ? t.required : t.optional}]
                         </span>{" "}
                         {item.label}
                       </span>
@@ -219,7 +245,7 @@ export function ConsentModal({
                         onClick={(e) => e.stopPropagation()}
                         className="text-xs text-primary hover:underline"
                       >
-                        보기
+                        {t.view}
                       </Link>
                     )}
                     {item.description && (
@@ -227,7 +253,7 @@ export function ConsentModal({
                         type="button"
                         onClick={() => setExpanded(isOpen ? null : item.key)}
                         className="text-muted-foreground hover:text-foreground"
-                        aria-label="상세 보기"
+                        aria-label={t.detailAria}
                       >
                         {isOpen ? (
                           <ChevronUp className="h-4 w-4" />
@@ -250,7 +276,7 @@ export function ConsentModal({
 
         <DialogFooter className="gap-2 sm:gap-2">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            취소
+            {t.cancel}
           </Button>
           <Button
             onClick={handleConfirm}
@@ -258,7 +284,7 @@ export function ConsentModal({
             className="gap-2"
           >
             {showIcons && <FileText className="h-4 w-4" />}
-            동의하고 계속
+            {t.confirm}
           </Button>
         </DialogFooter>
       </DialogContent>
