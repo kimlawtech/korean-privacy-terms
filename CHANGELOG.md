@@ -5,6 +5,12 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [Unreleased]
+
+### 추가
+- **Claude Code Plugin 매니페스트** (`.claude-plugin/plugin.json`) — `/plugin install kimlawtech/korean-privacy-terms` 한 줄 설치 지원. `skills: ["./"]` 패턴으로 루트 `SKILL.md`를 진입점으로 등록, 기존 `git clone` 수동 설치와 하위 호환 유지.
+- README 설치 섹션에 플러그인 설치 방법 병기.
+
 ## [2.2.0] - 2026-04-19
 
 ### 추가

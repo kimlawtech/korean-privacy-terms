@@ -71,6 +71,14 @@ SaaS · 쇼핑몰 · 커뮤니티 · 블로그 · 핀테크 · AI 서비스 — 
 
 ## 설치
 
+### 권장: Claude Code Plugin
+
+```
+/plugin install korean-privacy-terms@kimlawtech/korean-privacy-terms
+```
+
+### 수동 설치 (기존 방식)
+
 Claude Code 스킬 디렉토리에 배치:
 
 ```bash
