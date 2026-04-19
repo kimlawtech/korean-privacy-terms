@@ -1,0 +1,22 @@
+{
+  "name": "korean-privacy-terms",
+  "version": "2.1.0",
+  "description": "한국 법령(개인정보보호법·약관규제법·전자상거래법) 기반 개인정보처리방침·이용약관을 Next.js 프로젝트에 자동 생성하는 Claude Code 스킬. 2025.4.21 작성지침 및 2026.3 개정 법령 반영.",
+  "author": {
+    "name": "kimlawtech",
+    "url": "https://github.com/kimlawtech"
+  },
+  "homepage": "https://github.com/kimlawtech/korean-privacy-terms",
+  "repository": "https://github.com/kimlawtech/korean-privacy-terms",
+  "license": "Apache-2.0",
+  "keywords": [
+    "korean",
+    "privacy",
+    "terms",
+    "pipa",
+    "gdpr",
+    "nextjs",
+    "shadcn"
+  ],
+  "skills": ["./"]
+}

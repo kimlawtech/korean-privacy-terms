@@ -5,6 +5,15 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [Unreleased]
+
+### 추가
+- **Claude Code Plugin 매니페스트**
+  - `.claude-plugin/plugin.json` — `skills: ["./"]` 패턴으로 루트 `SKILL.md`를 스킬 진입점으로 등록
+  - `.claude-plugin/marketplace.json` — 단일 저장소 마켓플레이스(`speciai`) 정의, 루트 플러그인 엔트리(`source: "./"`) 등록
+  - 설치 플로우: `/plugin marketplace add kimlawtech/korean-privacy-terms` → `/plugin install korean-privacy-terms@speciai`
+- README 설치 섹션에 플러그인 설치 방법 병기. 기존 `git clone` 수동 설치와 하위 호환 유지.
+
 ## [2.2.0] - 2026-04-19
 
 ### 추가
