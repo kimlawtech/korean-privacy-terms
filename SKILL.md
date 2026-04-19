@@ -52,7 +52,7 @@ AI로 빠르게 해결하는 창업자·변호사 커뮤니티예요.
 ## 관할법 지원 (v2.0)
 
 - **🇰🇷 한국 (PIPA + 약관규제법 + 전자상거래법)** — `references/`, `jurisdictions/kr-pipa/`
-- **🇪🇺 EU (GDPR + ePrivacy)** — `jurisdictions/eu-gdpr/` (v2.0 신규)
+- **🇪🇺 EU (GDPR + ePrivacy + CRD + DSA + DCD + Unfair Terms)** — `jurisdictions/eu-gdpr/` (v2.0 신규, v2.2 Terms 완성)
 - 🇺🇸 미국 CCPA — 로드맵 (`ROADMAP.md`)
 - 🇯🇵 일본 APPI — 로드맵
 - 🇨🇳 중국 PIPL — 로드맵

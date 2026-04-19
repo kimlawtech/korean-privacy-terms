@@ -5,6 +5,41 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [2.2.0] - 2026-04-19
+
+### 추가
+- **EU Terms of Service 영문 전용 템플릿** (`jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl`)
+  - Consumer Rights Directive 2011/83/EU 14일 철회권
+  - Digital Services Act (DSA) Art. 14, 16, 17, 20-22 — 콘텐츠 조정, Statement of Reasons, 이의신청
+  - Digital Content Directive (EU) 2019/770 — 적합성 보증, 업데이트 의무
+  - Unfair Terms Directive 93/13/EEC 준수
+  - Brussels I bis Regulation — 소비자 관할 특례
+  - Rome I Regulation — 준거법 특례
+  - ODR 플랫폼 링크 (ec.europa.eu/consumers/odr)
+- `jurisdictions/eu-gdpr/terms-checklist.md` — EU 약관 필수 체크리스트·금지 조항·한국 약관규제법 비교
+
+### 변경
+- SKILL.md 관할법 지원 섹션 — EU 적용 법령 4종 추가 명시
+
+### 보안 (메타)
+- main 브랜치 보호 설정 (force push·삭제 차단)
+- 커밋 메시지에서 Co-Author 자동 삽입 중단
+- README 하단에 "Built with Claude Code" 크레딧 정식 명시
+
+## [2.1.0] - 2026-04-19
+
+### 추가
+- **인터뷰 흐름 재설계** — 첫 단계에서 서비스 성격 3문항 스크리닝
+  - Step 0-A: 대상 사용자 (한국/해외/글로벌)
+  - Step 0-B: 해외 주력 지역 (EU/US/Asia/전세계)
+  - Step 0-C: 운영 주체 소재지
+- 자동 결정: `jurisdictions`, `outputLocale`, 후속 질문 범위
+- 요약 확인 단계 추가 (진행 전 사용자 검증)
+
+### 변경
+- 기존 Step -1 (관할 선택) + Step 0 (언어 선택) 분리 구조 → 통합 Step 0 (서비스 성격)
+- 이후 질문 관할법별 동적 축소 (EU 단독이면 CPO·전자상거래법 생략)
+
 ## [2.0.0] - 2026-04-19
 
 ### 추가
