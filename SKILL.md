@@ -147,8 +147,26 @@ npm install -D @tailwindcss/typography
 중요: `next.config.{ts,mjs}`에 `createMDX` 래퍼를 추가할 때, Turbopack 환경에서는 `remarkPlugins`를 **문자열 배열로 전달**해야 한다 (`[["remark-gfm"]]`). 함수 참조 시 `loader does not have serializable options` 에러.
 템플릿: `assets/config/next.config.ts.tmpl`.
 
-### 3단계: 사용자 인터뷰 (9단계)
-`scripts/interview.md`의 9단계 질문을 AskUserQuestion으로 순차 진행. 한 번에 1~2문항씩. 필수 정보 수집 전에는 생성 금지.
+### 3단계: 사용자 인터뷰 — 성격 스크리닝 먼저
+
+**v2.1부터 인터뷰 첫 단계는 "서비스 성격 스크리닝"이다.** 세부 질문 전에 다음을 먼저 확정:
+
+1. **Step 0-A**: 대상 사용자 (한국만 / 해외 위주 / 양쪽 글로벌)
+2. **Step 0-B**: (글로벌 선택 시) 해외 주력 지역 (EU / 미국 / 아시아 / 전세계)
+3. **Step 0-C**: 운영 주체 소재지 (한국 / 해외)
+
+이 3개 답을 바탕으로 Claude가 자동 결정:
+- `jurisdictions`: `["kr-pipa"]` / `["eu-gdpr"]` / `["kr-pipa", "eu-gdpr"]`
+- `outputLocale`: `ko` / `en` / `both`
+- 이후 세부 질문 범위 (EU 단독이면 CPO·전자상거래법 보유기간 안 물음)
+
+사용자에게 결정 요약을 보여주고 확인받은 뒤 Step 1~9 진행.
+
+**한국만 선택** → Step 1~9 한국 버전 (기존 v1)
+**EU만 선택** → Step 1~9 EU 버전 (DPO, Legal Basis, 국제 이전 등)
+**병기 선택** → 공통 질문 1회 + 관할별 고유 질문 추가
+
+`scripts/interview.md` Step 0 상세 로직 참조. 한 번에 1~2문항씩. 필수 정보 수집 전에는 생성 금지.
 
 ### 3.3단계: 디자인 스타일 확인 (Step 11)
 
