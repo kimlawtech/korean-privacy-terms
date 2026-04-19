@@ -1,0 +1,312 @@
+{/*
+These Terms of Service are drafted in accordance with EU consumer and digital services law:
+- Consumer Rights Directive 2011/83/EU (Art. 6, 9-16)
+- Digital Services Act (Regulation (EU) 2022/2065)
+- Digital Content Directive (Directive (EU) 2019/770)
+- Unfair Terms in Consumer Contracts Directive 93/13/EEC
+
+Independent legal review by qualified EU/EEA counsel is required before production deployment.
+Penalties: DSA breaches — up to 6% of global annual turnover.
+*/}
+
+# Terms of Service — {{serviceName}}
+
+These Terms govern your use of {{serviceName}} (the "Service") operated by {{operatorName}} ("we", "us", "our").
+
+By using the Service you agree to these Terms. Please read them carefully.
+
+Effective Date {{effectiveDate}}
+Last Updated {{lastRevisedDate}}
+
+## 1. Provider Information
+
+In compliance with Article 5 of Directive 2000/31/EC and Article 6 of Directive 2011/83/EU:
+
+- **Legal name**: {{operatorName}}
+- **Registered address**: {{operatorAddress}}
+- **Email**: {{contactEmail}}
+- **Phone**: {{contactPhone}}
+- **Company registration number**: {{registrationNumber}}
+{{#if hasVatNumber}}
+- **VAT number**: {{vatNumber}}
+{{/if}}
+{{#if hasEuRepresentative}}
+
+### EU Representative (GDPR Art. 27)
+
+- **Name**: {{euRepName}}
+- **Address**: {{euRepAddress}}
+- **Email**: {{euRepEmail}}
+{{/if}}
+
+## 2. Definitions
+
+- **"User"** means any natural or legal person accessing or using the Service.
+- **"Consumer"** means a User acting for purposes outside their trade, business, craft, or profession (Directive 2011/83/EU).
+- **"Content"** means any material (text, images, video, audio, code) provided through the Service.
+{{#if hasUserGeneratedContent}}
+- **"User Content"** means Content uploaded or posted by Users.
+{{/if}}
+{{#if isPaidService}}
+- **"Subscription"** means a paid access plan to the Service.
+{{/if}}
+
+## 3. Acceptance and Eligibility
+
+By accessing or using the Service you confirm that:
+
+- You are at least {{minimumAge}} years old ({{#if isChildFriendly}}or have legal representative consent if under 16{{else}}the Service is not intended for children under 16{{/if}});
+- If you are a Consumer, you have the right to withdraw from this contract within 14 days under Directive 2011/83/EU (see Section 7);
+- You have read and agree to these Terms and our [Privacy Notice](/privacy).
+
+## 4. Service Description
+
+{{serviceDescription}}
+
+{{#each services}}
+- {{this}}
+{{/each}}
+
+We reserve the right to modify or discontinue features with reasonable prior notice, consistent with our obligations to Consumers under the Digital Content Directive (EU) 2019/770.
+
+## 5. User Accounts
+
+{{#if requiresAccount}}
+To access certain features you must create an account. You agree to:
+
+- Provide accurate, current, and complete information;
+- Maintain the security of your credentials;
+- Notify us without delay of any unauthorized access;
+- Accept responsibility for all activity under your account.
+
+We may suspend or terminate accounts for violations of these Terms with notice and a right to appeal (see Section 12).
+{{/if}}
+
+{{#if isPaidService}}
+## 6. Fees, Payment, and Billing
+
+### 6.1 Pricing
+
+All prices are displayed in {{currency}} and include applicable VAT unless otherwise stated. Total price, delivery costs (if any), and additional charges are disclosed before purchase, per Article 6(1)(e) of Directive 2011/83/EU.
+
+### 6.2 Payment
+
+Accepted payment methods: {{paymentMethods}}.
+
+### 6.3 Subscriptions and Auto-Renewal
+
+{{#if hasSubscription}}
+Subscriptions renew automatically at the end of each billing period unless cancelled. You may cancel anytime from your account settings; cancellation takes effect at the end of the current paid period.
+
+We notify you at least 14 days before each renewal of the renewal date and price, in accordance with consumer protection best practices.
+{{/if}}
+
+### 6.4 Taxes
+
+You are responsible for any taxes, duties, or fees imposed by your jurisdiction that are not collected by us.
+{{/if}}
+
+## 7. Right of Withdrawal (Consumers Only)
+
+Under Directive 2011/83/EU, if you are a Consumer resident in the EU/EEA, you have the right to withdraw from the contract within **14 days** without giving any reason.
+
+### 7.1 Withdrawal Period
+
+- **Services and digital content not on a tangible medium**: from the day of contract conclusion.
+- **Goods**: from the day you or a third party (other than the carrier) receives the goods.
+
+### 7.2 How to Withdraw
+
+Notify us of your decision by a clear statement (for example, a letter by post, fax, or email) sent to:
+
+{{contactEmail}}
+
+You may use the model withdrawal form below, but it is not obligatory.
+
+```
+Model Withdrawal Form (Annex I, Directive 2011/83/EU)
+
+To: {{operatorName}}, {{operatorAddress}}, {{contactEmail}}
+
+I/We hereby give notice that I/we withdraw from my/our
+contract for the sale of the following goods / for the supply
+of the following service:
+
+[description]
+
+Ordered on / Received on: [date]
+
+Name of consumer(s):
+Address of consumer(s):
+Signature (if sent on paper):
+Date:
+```
+
+### 7.3 Effects of Withdrawal
+
+Upon valid withdrawal we will reimburse all payments received, including delivery costs (except for supplementary costs from your chosen non-standard delivery), without undue delay and no later than **14 days** after we receive your notice.
+
+We use the same means of payment as the original transaction unless you expressly agree otherwise.
+
+### 7.4 Exceptions (CRD Art. 16)
+
+The right to withdraw does NOT apply to:
+
+- Services fully performed with your prior express consent and acknowledgment of losing the withdrawal right;
+- Goods made to your specifications or clearly personalized;
+- Sealed goods unsuitable for return due to health or hygiene reasons, once unsealed after delivery;
+- Digital content supplied on a non-tangible medium if performance has begun with your prior express consent and acknowledgment of losing the withdrawal right;
+- Contracts for newspapers, periodicals, or magazines (subscriptions excepted).
+
+{{#if isPaidService}}
+## 8. Refunds Outside Withdrawal Period
+
+Outside the 14-day withdrawal period, refunds are provided in accordance with applicable consumer law and our refund policy. Service interruptions or failure to conform to the contract give you rights under the Digital Content Directive (EU) 2019/770.
+{{/if}}
+
+## 9. Acceptable Use
+
+You agree not to:
+
+- Violate any applicable law or regulation;
+- Infringe intellectual property or other rights;
+- Upload malicious software, spam, or harmful content;
+- Attempt to gain unauthorized access to the Service or other users' data;
+- Reverse engineer, decompile, or disassemble any part of the Service except as permitted by law;
+- Use the Service to harass, defame, or harm others.
+
+{{#if hasUserGeneratedContent}}
+## 10. User Content
+
+You retain ownership of content you upload. By uploading you grant us a worldwide, non-exclusive, royalty-free licence to host, reproduce, and display your content solely to operate and provide the Service.
+
+You are responsible for ensuring you have the rights to upload any content.
+{{/if}}
+
+{{#if isPlatformService}}
+## 11. Content Moderation (Digital Services Act)
+
+In compliance with the Digital Services Act (Regulation (EU) 2022/2065):
+
+### 11.1 Moderation Policy
+
+We moderate content to ensure compliance with these Terms and applicable law. Our moderation practices are described in plain language in our [Community Guidelines](/community-guidelines).
+
+### 11.2 Statement of Reasons (Art. 17 DSA)
+
+When we restrict, remove, or demote your content or account, we will provide you with a clear statement of reasons including:
+
+- The scope and nature of the restriction;
+- The specific legal or contractual ground;
+- The facts and circumstances;
+- Information about redress mechanisms.
+
+### 11.3 Internal Complaint Mechanism (Art. 20 DSA)
+
+You may lodge a complaint against our content moderation decision through our internal mechanism at {{complaintUrl}}. We process complaints without undue delay and in any case within 90 days.
+
+### 11.4 Out-of-Court Dispute Settlement (Art. 21 DSA)
+
+If you disagree with our final decision, you have the right to select a certified out-of-court dispute settlement body.
+
+### 11.5 Notice and Action (Art. 16 DSA)
+
+Anyone can notify us of illegal content via {{noticeUrl}}. We process notices diligently and without undue delay.
+
+### 11.6 Trusted Flaggers (Art. 22 DSA)
+
+We give priority to notices submitted by trusted flaggers designated under Art. 22 DSA.
+{{/if}}
+
+## 12. Suspension and Termination
+
+### 12.1 By You
+
+You may terminate your account at any time via account settings or by contacting {{contactEmail}}.
+
+### 12.2 By Us
+
+We may suspend or terminate your access if:
+
+- You materially breach these Terms;
+- You engage in illegal or harmful conduct;
+- Required by law or regulatory order;
+- Extended inactivity (12 months or more).
+
+Except in cases of serious breach or urgent safety concerns, we provide at least 30 days' prior notice and an opportunity to remedy.
+
+## 13. Liability
+
+### 13.1 Limitation
+
+To the maximum extent permitted by law, our total liability for any claim arising from these Terms or the Service is limited to the amount you paid us in the 12 months before the claim arose.
+
+This limitation does NOT apply to:
+
+- Death or personal injury caused by our negligence;
+- Fraud or fraudulent misrepresentation;
+- Consumer rights that cannot be waived under mandatory law;
+- Any other liability that cannot be excluded under applicable EU or Member State law.
+
+### 13.2 Consumer Rights Preserved
+
+Nothing in these Terms affects your statutory rights as a Consumer. Mandatory consumer protection rules of your country of residence continue to apply.
+
+## 14. Intellectual Property
+
+The Service, including software, design, text, graphics, logos, and marks, is owned by {{operatorName}} or its licensors and is protected by intellectual property laws.
+
+Subject to these Terms we grant you a limited, non-exclusive, non-transferable licence to use the Service for its intended purpose.
+
+## 15. Changes to These Terms
+
+We may modify these Terms with at least **30 days' prior notice** by email or prominent notice on the Service. Material changes adverse to Consumers require your express consent to continue.
+
+You may terminate your account before the changes take effect if you disagree.
+
+## 16. Governing Law and Jurisdiction
+
+### 16.1 Governing Law
+
+These Terms are governed by the laws of {{governingLaw}}, without prejudice to mandatory consumer protection rules of the country where you reside as a Consumer (Rome I Regulation Art. 6).
+
+### 16.2 Jurisdiction
+
+### For Consumers (EU/EEA residents)
+
+You may bring proceedings in the courts of {{governingJurisdiction}} or in the courts of the Member State where you reside. We may only bring proceedings against you in the courts where you reside (Brussels I bis Regulation Art. 18).
+
+### For Businesses
+
+Disputes arising from B2B relationships are subject to the exclusive jurisdiction of the courts of {{governingJurisdiction}}.
+
+## 17. Online Dispute Resolution (ODR)
+
+As a Consumer resident in the EU you may access the European Commission's Online Dispute Resolution platform at:
+
+**https://ec.europa.eu/consumers/odr**
+
+Our contact email for ODR purposes: {{contactEmail}}
+
+## 18. Severability
+
+If any provision of these Terms is held invalid or unenforceable, the remaining provisions shall remain in full force and effect.
+
+## 19. Entire Agreement
+
+These Terms, together with our [Privacy Notice](/privacy){{#if hasCookiePolicy}} and [Cookie Policy](/cookie-policy){{/if}}, constitute the entire agreement between you and us regarding the Service.
+
+## 20. Contact
+
+Questions about these Terms? Contact us at:
+
+- Email: {{contactEmail}}
+- Address: {{operatorAddress}}
+
+Revision History
+
+{{#each revisionHistory}}
+- {{this.date}} — {{this.description}}
+{{/each}}
+
+These Terms take effect on {{effectiveDate}}.

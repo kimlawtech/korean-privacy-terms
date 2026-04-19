@@ -1,0 +1,16 @@
+import type { NextConfig } from "next"
+import createMDX from "@next/mdx"
+
+// Turbopack 호환을 위해 remarkPlugins는 문자열 형태로 전달 (함수 참조 금지)
+// Webpack 전용 프로젝트에서는 import 후 함수 참조도 가능
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [["remark-gfm"]],
+  },
+})
+
+const nextConfig: NextConfig = {
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+}
+
+export default withMDX(nextConfig)

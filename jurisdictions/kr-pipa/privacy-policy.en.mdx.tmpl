@@ -1,0 +1,222 @@
+{/*
+This draft reflects the PIPC Privacy Policy Drafting Guidelines (revised 2025-04-21)
+and the amended Personal Information Protection Act (promulgated 2026-03, effective 2026-09-11).
+Legal review by qualified Korean counsel is required before production deployment.
+Administrative fines may reach up to 10% of annual revenue for serious violations.
+*/}
+
+# {{serviceName}} Privacy Policy
+
+{{operatorName}} (the "Company") establishes and publicly discloses this Privacy Policy pursuant to Article 30 of the Korean Personal Information Protection Act ("PIPA") to protect personal information of data subjects and to promptly and smoothly handle any related grievances.
+
+Effective Date {{effectiveDate}}
+Last Revised {{lastRevisedDate}}
+
+## Article 1. Purposes of Processing Personal Information
+
+The Company processes personal information for the following purposes. Personal information being processed will not be used for purposes other than those specified below, and separate consent will be obtained in accordance with Article 18 of PIPA if the purposes of use are changed.
+
+{{#each purposes}}
+{{this.category}} — {{this.description}}
+{{/each}}
+
+## Article 2. Categories of Personal Information Processed
+
+The Company processes the following categories of personal information.
+
+Required Items
+{{#each requiredItems}}
+- {{this.name}} — {{this.purpose}}
+{{/each}}
+
+Optional Items
+{{#each optionalItems}}
+- {{this.name}} — {{this.purpose}}
+{{/each}}
+
+Automatically Collected Items
+
+Information that may be automatically generated and collected during service use, including IP addresses, cookies, MAC addresses, service usage records, visit records, and fraudulent use records. For mobile app users, advertising identifiers (ADID/IDFA) and device information (OS, model, carrier) may additionally be collected.
+
+{{#if collectsSensitive}}
+Sensitive Information
+
+The Company collects {{sensitiveItems}}. The legal basis is {{sensitiveLegalBasis}}, and such information is processed with separate consent.
+{{/if}}
+
+{{#if collectsIdentifier}}
+Unique Identifier Information
+
+The Company collects {{identifierItems}}. The legal basis is {{identifierLegalBasis}}.
+{{/if}}
+
+## Article 3. Retention and Use Period of Personal Information
+
+The Company processes and retains personal information within the retention/use period specified by applicable laws or consented to by data subjects at the time of collection.
+
+| Purpose | Retention Period | Legal Basis |
+|---------|------------------|-------------|
+{{#each retentionPeriods}}
+| {{this.purpose}} | {{this.period}} | {{this.legalBasis}} |
+{{/each}}
+
+## Article 4. Provision of Personal Information to Third Parties
+
+{{#if providesToThirdParty}}
+The Company provides personal information to third parties only in cases specified under Articles 17 and 18 of PIPA, including with the data subject's consent or under specific provisions of law.
+
+| Recipient | Purpose | Items | Retention Period |
+|-----------|---------|-------|------------------|
+{{#each thirdParties}}
+| {{this.recipient}} | {{this.purpose}} | {{this.items}} | {{this.period}} |
+{{/each}}
+{{else}}
+The Company processes personal information only within the scope of Article 1 (Purposes of Processing) and does not provide personal information to third parties except as permitted under Articles 17 and 18 of PIPA with data subject consent or specific legal provisions.
+{{/if}}
+
+## Article 5. Outsourcing of Personal Information Processing
+
+{{#if hasProcessors}}
+The Company outsources personal information processing tasks to the following parties for smooth processing.
+
+| Processor | Outsourced Task | Period | Country |
+|-----------|----------------|--------|---------|
+{{#each processors}}
+| {{this.name}} | {{this.task}} | {{this.period}} | {{this.country}} |
+{{/each}}
+
+When entering into outsourcing agreements, the Company specifies requirements under Article 26 of PIPA — prohibiting processing beyond outsourced purposes, technical and managerial protection measures, restrictions on re-outsourcing, supervision of processors, and liability for damages — and supervises whether processors handle personal information safely.
+{{else}}
+The Company currently does not outsource personal information processing to external parties. Any future outsourcing will be disclosed in advance through this Policy.
+{{/if}}
+
+## Article 6. Destruction Procedure and Method
+
+When personal information becomes unnecessary due to expiration of retention periods or achievement of processing purposes, the Company destroys such information without delay. Destruction requires approval from the Data Protection Officer. Electronic files are permanently deleted using methods that prevent recovery; paper documents are shredded or incinerated. Information required to be retained under law is segregated in separate databases or storage locations.
+
+## Article 7. Rights of Data Subjects and Legal Representatives
+
+Data subjects may exercise the following rights toward the Company at any time — access, correction, deletion, suspension of processing, and data portability requests. Exercise of rights may be made in writing, by email, or by facsimile pursuant to Article 41(1) of the Enforcement Decree of PIPA, and the Company will act on such requests without delay. For children under 14, legal representatives may exercise these rights on behalf of the child.
+
+How to Exercise
+
+- Email {{privacyEmail}}
+- Phone {{privacyPhone}}
+- Mail {{mailingAddress}}
+- Online My Page > Personal Information Management
+
+{{#if hasDataPortability}}
+Right to Data Portability
+
+Data subjects may request transfer of their personal information to another personal information controller or management agency. Transferable items are {{portabilityItems}}, delivered in JSON or CSV format, processed within 10 business days of the request. Transfer history is available at My Page > Personal Information Management > Transfer History.
+{{/if}}
+
+## Article 8. Automatic Collection Devices (Cookies)
+
+The Company uses cookies to provide personalized services by storing and retrieving usage information. Cookies assist in analyzing visit frequency, dwell time, user preferences, interests, and event participation.
+
+How to Refuse Cookies
+
+- Chrome — Settings > Privacy and security > Cookies and other site data
+- Safari — Preferences > Privacy > Manage Website Data
+- Edge — Settings > Cookies and site permissions > Manage cookies and site data
+- Firefox — Settings > Privacy & Security > Cookies and Site Data
+- iOS — Settings > Privacy & Security > Tracking > Allow Apps to Request to Track
+- Android — Settings > Privacy > Ads > Reset advertising ID
+
+Refusal of cookies may limit use of personalized services.
+
+{{#if hasBehavioralAds}}
+Behavioral Information for Targeted Advertising
+
+| Collector | Purpose | Items | Retention | Country |
+|-----------|---------|-------|-----------|---------|
+{{#each behavioralProviders}}
+| {{this.name}} | {{this.purpose}} | {{this.items}} | {{this.period}} | {{this.country}} |
+{{/each}}
+
+Opt-out is available through the methods above and at the Cookie Settings page (/cookie-settings).
+{{/if}}
+
+## Article 9. Security Measures
+
+The Company implements administrative, technical, and physical measures to ensure the security of personal information. Administrative measures include internal management plans, minimization and training of personnel handling personal information, and regular self-audits. Technical measures include access privilege management, retention of access logs, encryption (one-way hashing for passwords, AES-256 for critical data), and operation of intrusion prevention and detection systems. Physical measures include access control to computer rooms and data storage areas.
+
+## Article 10. Data Protection Officer and Grievance Department
+
+The Company designates a Data Protection Officer responsible for overall personal information processing and handling of complaints and remedies by data subjects.
+
+Data Protection Officer
+
+- Name {{cpoName}}
+- Title {{cpoTitle}}
+- Phone {{cpoPhone}}
+- Email {{cpoEmail}}
+
+{{#if hasComplaintDepartment}}
+Grievance Department
+
+- Department {{complaintDept}}
+- Phone {{complaintPhone}}
+- Email {{complaintEmail}}
+- Hours {{complaintHours}}
+{{/if}}
+
+{{#if isChildFriendly}}
+## Article 11. Processing of Children's Personal Information (Under 14)
+
+When collecting personal information from children under 14, the Company obtains consent from their legal representatives. Legal representatives may request access, correction, deletion, or suspension of processing of the child's information. The method of verifying legal representative consent is {{legalGuardianConsentMethod}}.
+{{/if}}
+
+{{#if hasAutomatedDecision}}
+## Article 12. Automated Decision-Making
+
+The Company conducts the following automated decisions.
+
+{{#each automatedDecisions}}
+{{this.serviceName}}
+
+Decision Criteria {{this.criteria}}
+Decision Process {{this.process}}
+Decision Method {{this.method}}
+Training Data Use {{this.usesTraining}}
+{{/each}}
+
+Rights of Data Subjects
+
+Data subjects may request an explanation of the reasons and criteria for decisions, with a response within 15 days. Data subjects may refuse automated decisions, which immediately suspends the effect of such decisions. Data subjects may request reprocessing with human intervention, with results notified within 30 days (extendable up to 60 days with justification).
+
+How to Exercise — Email {{privacyEmail}} or Phone {{privacyPhone}}.
+{{/if}}
+
+{{#if isOverseasOperator}}
+## Article 13. Domestic Agent
+
+As a foreign operator, the Company designates the following domestic agent.
+
+- Name (Entity) {{agentName}}
+- Address {{agentAddress}}
+- Phone {{agentPhone}}
+- Email {{agentEmail}}
+{{/if}}
+
+## Remedies for Infringement of Data Subject Rights
+
+Data subjects may seek remedies for personal information infringement through the Personal Information Dispute Mediation Committee, the Personal Information Infringement Report Center of KISA, and other relevant agencies.
+
+- Personal Information Dispute Mediation Committee — 1833-6972 (www.kopico.go.kr)
+- Personal Information Infringement Report Center — 118 (privacy.kisa.or.kr)
+- Supreme Prosecutors' Office — 1301 (www.spo.go.kr)
+- Korean National Police Agency — 182 (ecrm.police.go.kr)
+
+## Changes to This Privacy Policy
+
+This Privacy Policy applies from the Effective Date. Any additions, deletions, or amendments due to changes in law or policy will be announced at least 7 days before the effective date of the change through notice.
+
+Revision History
+
+{{#each revisionHistory}}
+- {{this.date}} — {{this.description}}
+{{/each}}
+
+This Privacy Policy takes effect on {{effectiveDate}}.
