@@ -218,3 +218,7 @@ Copyright 2026 kimlawtech (SpeciAI).
 
 본 스킬이 생성하는 문서는 **참고용 초안**이며 법률 자문이 아닙니다. 실서비스 배포 전 반드시 변호사 검토를 받으세요.
 자세한 면책 고지는 [DISCLAIMER.md](./DISCLAIMER.md) 참조.
+
+---
+
+Built with [Claude Code](https://claude.com/claude-code) by [@kimlawtech](https://github.com/kimlawtech).
