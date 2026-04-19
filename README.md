@@ -73,9 +73,14 @@ SaaS · 쇼핑몰 · 커뮤니티 · 블로그 · 핀테크 · AI 서비스 — 
 
 ### 권장: Claude Code Plugin
 
+Claude Code에서 두 단계로 설치:
+
 ```
-/plugin install korean-privacy-terms@kimlawtech/korean-privacy-terms
+/plugin marketplace add kimlawtech/korean-privacy-terms
+/plugin install korean-privacy-terms@speciai
 ```
+
+첫 줄은 이 저장소를 `speciai` 마켓플레이스로 등록하고, 두 번째 줄이 `korean-privacy-terms` 스킬을 설치합니다. 설치 후 `/reload-plugins`로 즉시 활성화.
 
 ### 수동 설치 (기존 방식)
 
