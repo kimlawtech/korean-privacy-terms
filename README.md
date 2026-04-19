@@ -16,7 +16,7 @@
 > → [discord.gg/qmCbMaER](https://discord.gg/qmCbMaER)
 
 **라이선스**: Apache-2.0
-**버전**: 2.1.0
+**버전**: 2.3.0
 **저자**: [@kimlawtech](https://github.com/kimlawtech)
 
 ## 특징
@@ -80,36 +80,43 @@ Claude Code에서 두 단계로 설치:
 /plugin install korean-privacy-terms@speciai
 ```
 
-첫 줄은 이 저장소를 `speciai` 마켓플레이스로 등록하고, 두 번째 줄이 `korean-privacy-terms` 스킬을 설치합니다. 설치 후 `/reload-plugins`로 즉시 활성화.
+첫 줄은 이 저장소를 `speciai` 마켓플레이스로 등록하고, 두 번째 줄이 `korean-privacy-terms` 플러그인을 설치합니다. 설치 후 `/reload-plugins`로 즉시 활성화.
+
+#### 설치 확인
+
+```
+/plugin                              # korean-privacy-terms@speciai 가 Enabled 로 표시되는지 확인
+/korean-privacy-terms:privacy-terms  # 스킬의 인사 블록이 출력되면 정상
+```
 
 ### 수동 설치 (기존 방식)
 
-Claude Code 스킬 디렉토리에 배치:
+플러그인 설치가 어려운 환경에서는 스킬 디렉토리만 직접 복사해도 됩니다. v2.3 이후 스킬 본체는 `skills/korean-privacy-terms/` 아래에 있으므로 해당 폴더만 `~/.claude/skills/` 로 옮깁니다.
 
 ```bash
+git clone https://github.com/kimlawtech/korean-privacy-terms.git /tmp/kpt
 mkdir -p ~/.claude/skills
-cd ~/.claude/skills
-git clone https://github.com/kimlawtech/korean-privacy-terms.git
+cp -r /tmp/kpt/skills/korean-privacy-terms ~/.claude/skills/
 ```
 
 또는 프로젝트별로:
 
 ```bash
 mkdir -p /your-project/.claude/skills
-cp -r ~/.claude/skills/korean-privacy-terms /your-project/.claude/skills/
+cp -r /tmp/kpt/skills/korean-privacy-terms /your-project/.claude/skills/
 ```
+
+> 수동 설치 시에는 플러그인 네임스페이스(`/korean-privacy-terms:privacy-terms`)가 등록되지 않습니다. 자연어 트리거 또는 스킬 이름(`/privacy-terms`)으로 호출하세요.
 
 ## 사용법
 
-Claude Code에서:
+플러그인으로 설치한 경우 두 가지 진입점이 있습니다.
+
+1. **스킬 네임스페이스 형태** — `/korean-privacy-terms:privacy-terms`
+2. **자연어 트리거** — SKILL.md 의 `description` 에 의해 Claude 가 자동 호출
 
 ```
-/privacy-terms
-```
-
-또는 자연어로:
-
-```
+/korean-privacy-terms:privacy-terms
 "개인정보처리방침이랑 이용약관 만들어줘"
 "쿠키 배너 추가해줘"
 "회원가입 동의 모달 설치해줘"
@@ -118,7 +125,7 @@ Claude Code에서:
 ### 실제 흐름 예시 (v2.1)
 
 ```
-[사용자] /privacy-terms
+[사용자] /korean-privacy-terms:privacy-terms
 
 [Claude]
 어떤 사용자를 대상으로 하시나요?

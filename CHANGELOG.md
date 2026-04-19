@@ -7,12 +7,25 @@
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-04-19
+
 ### 추가
 - **Claude Code Plugin 매니페스트**
   - `.claude-plugin/plugin.json` — `skills: ["./"]` 패턴으로 루트 `SKILL.md`를 스킬 진입점으로 등록
   - `.claude-plugin/marketplace.json` — 단일 저장소 마켓플레이스(`speciai`) 정의, 루트 플러그인 엔트리(`source: "./"`) 등록
   - 설치 플로우: `/plugin marketplace add kimlawtech/korean-privacy-terms` → `/plugin install korean-privacy-terms@speciai`
 - README 설치 섹션에 플러그인 설치 방법 병기. 기존 `git clone` 수동 설치와 하위 호환 유지.
+- README 설치 확인 스니펫 추가 (`/plugin` + `/korean-privacy-terms:privacy-terms`).
+- README 사용법 섹션에 2가지 진입점(네임스페이스 스킬, 자연어) 명시.
+
+### 변경
+- 버전 통일 `2.3.0` — `plugin.json` / `marketplace.json` (metadata + plugins[0]) / `SKILL.md` frontmatter / README 버전 배지. 이전에는 `1.0.0` / `2.1.0` / `2.2.0` 혼재.
+- **플러그인 규격 준수 레이아웃으로 재구성**
+  - `SKILL.md` 및 지원 디렉토리(`references/`, `scripts/`, `templates/`, `jurisdictions/`, `assets/`, `examples/`) 를 모두 `skills/privacy-terms/` 아래로 이동
+  - 스킬 디렉토리 이름과 SKILL.md 프론트매터 `name` 을 모두 `privacy-terms` 로 통일 — 네임스페이스 호출이 `/korean-privacy-terms:privacy-terms` 로 간결
+  - `plugin.json` 의 `skills: ["./"]` 필드 제거 (기본 탐색 경로 `skills/<name>/SKILL.md` 사용)
+  - 이유: Claude Code 플러그인 validator 가 `skills: ["./"]` 를 "Path escapes plugin directory" 로 거부. `playground` · `hookify` 등 공식 플러그인과 동일한 레이아웃.
+  - 하위 호환: 수동 `git clone` 설치도 여전히 동작 (Claude Code 가 `skills/<name>/SKILL.md` 자동 탐색)
 
 ## [2.2.0] - 2026-04-19
 

@@ -1,8 +1,8 @@
 ---
-name: korean-privacy-terms
+name: privacy-terms
 description: Next.js 웹 프로젝트에 한국 법령(개인정보보호법·약관규제법·전자상거래법) 기반 개인정보처리방침·이용약관을 자동 생성하고, shadcn/ui 기반 동의 모달·쿠키 배너·페이지 템플릿을 설치하는 스킬. 2025.4.21 작성지침 및 2026.3 개정 법령 반영.
 license: Apache-2.0
-version: 1.0.0
+version: 2.3.0
 ---
 
 # Korean Privacy & Terms Skill

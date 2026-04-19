@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "SpeciAI 한국 법률 AI 플러그인 마켓플레이스 — 한국 법령 기반 개인정보처리방침·이용약관 자동화",
-    "version": "1.0.0"
+    "version": "2.3.0"
   },
   "plugins": [
     {
       "name": "korean-privacy-terms",
       "source": "./",
       "description": "한국 법령(개인정보보호법·약관규제법·전자상거래법) 기반 개인정보처리방침·이용약관을 Next.js 프로젝트에 자동 생성하는 Claude Code 스킬.",
-      "version": "2.1.0",
+      "version": "2.3.0",
       "author": {
         "name": "kimlawtech"
       },
