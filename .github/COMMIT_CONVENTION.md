@@ -10,16 +10,16 @@
 ## 형식
 
 ```
-<label>: <한국어 단문>
+[label] 한국어 요약
 ```
 
 ## 예시
 
 ```
-add: EU Terms of Service 영문 템플릿
-fix: 디스코드 초대 링크 만료 해결
-remove: 중복 templates 폴더
-update: 인터뷰 단계 명칭 통일
+[add] EU Terms of Service 영문 템플릿
+[fix] 디스코드 초대 링크 만료 해결
+[remove] 중복 templates 폴더
+[update] 인터뷰 단계 명칭 통일
 ```
 
 ## 금지
