@@ -5,6 +5,24 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [3.0.0] - 2026-04-20
+
+### 추가
+- **하위 스킬 3종 + 진입점 체계** (`skills/` 폴더)
+  - `privacy-terms` 진입점: 호출 즉시 번호 메뉴(1·2·3) 제시, 번호 입력으로 직행
+  - `privacy-kr` 한국 PIPA 전용: Step 1~11만 수행, Step 0·9-EU 생략
+  - `privacy-eu` EU GDPR 전용: Step 9-EU 중심, 영문 인터뷰
+  - `privacy-global` 병기: 한국+EU 두 세트 동시 생성
+- LocaleSwitch 컴포넌트 생성 안내 (privacy-global)
+
+### 변경
+- 루트 SKILL.md에 하위 스킬 안내 섹션 추가 (v2.x 설명은 레거시로 이동)
+- README 디렉토리 구조 v3.0 반영
+
+### 유지
+- 기존 `jurisdictions/`·`references/`·`assets/`·`scripts/` 모두 공유 자산으로 유지
+- v2.x 단일 스킬 호출 흐름도 여전히 동작 (하위 호환)
+
 ## [2.2.0] - 2026-04-19
 
 ### 추가

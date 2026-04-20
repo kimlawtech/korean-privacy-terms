@@ -1,11 +1,45 @@
 ---
 name: korean-privacy-terms
-description: Next.js 웹 프로젝트에 한국 법령(개인정보보호법·약관규제법·전자상거래법) 기반 개인정보처리방침·이용약관을 자동 생성하고, shadcn/ui 기반 동의 모달·쿠키 배너·페이지 템플릿을 설치하는 스킬. 2025.4.21 작성지침 및 2026.3 개정 법령 반영.
+description: 처리방침·이용약관 자동 생성 스킬 패키지 (v3.0). 호출 시 privacy-kr·privacy-eu·privacy-global 3개 하위 스킬을 번호 메뉴로 제시하고 번호 입력 즉시 해당 스킬 인터뷰로 직행. 한국 PIPA + EU GDPR 양쪽 대응.
 license: Apache-2.0
-version: 2.2.0
+version: 3.0.0
 ---
 
-# Korean Privacy & Terms Skill
+# Korean Privacy & Terms Skill (v3.0 — 하위 스킬 패키지)
+
+## 하위 스킬 3종
+
+호출 시 번호 메뉴로 안내하고 사용자가 1·2·3 중 선택하면 해당 하위 스킬로 직행.
+
+| 번호 | 스킬 | 대상 | 언어 |
+|------|------|------|------|
+| 1 | `privacy-kr` | 한국 서비스 | 한국어 |
+| 2 | `privacy-eu` | EU 서비스 | 영문 |
+| 3 | `privacy-global` | 한국+EU 병기 | 한국어+영문 |
+
+자세한 진입점 동작은 `skills/privacy-terms/SKILL.md` 참조.
+
+## 하위 스킬 폴더
+
+- `skills/privacy-terms/` — 진입점 (번호 메뉴·라우팅)
+- `skills/privacy-kr/` — 한국 PIPA 전용
+- `skills/privacy-eu/` — EU GDPR 전용
+- `skills/privacy-global/` — 한국+EU 병기
+
+공유 자산 (legacy, 하위 스킬이 참조):
+- `references/` — 한국법 레퍼런스 10종
+- `jurisdictions/kr-pipa/` — 한국 템플릿 (ko·en)
+- `jurisdictions/eu-gdpr/` — EU GDPR·CRD·DSA 템플릿
+- `assets/components/` — React 컴포넌트
+- `assets/config/` — next.config·mdx-components
+- `scripts/` — interview·render·install 절차
+- `examples/` — 입출력 페어
+
+---
+
+## 레거시 설명 (v2.x 단일 스킬 시절)
+
+아래는 v2.x 단일 스킬 동작 설명. v3.0 이후 하위 스킬로 분리됐지만 공유 자산과 법령 레퍼런스는 그대로 사용.
 
 한국 법령에 부합하는 개인정보처리방침과 이용약관, 관련 UI 컴포넌트를 Next.js 프로젝트에 자동 설치한다.
 

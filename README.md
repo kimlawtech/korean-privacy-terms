@@ -16,8 +16,26 @@
 > → [discord.gg/wQWpEpnBfE](https://discord.gg/wQWpEpnBfE)
 
 **라이선스**: Apache-2.0
-**버전**: 2.2.0
+**버전**: 3.0.0
 **저자**: [@kimlawtech](https://github.com/kimlawtech)
+
+## v3.0 하위 스킬 체계
+
+진입점 1개 + 관할별 하위 스킬 3개 구조.
+
+| 스킬 | 호출 | 용도 |
+|------|------|------|
+| `privacy-terms` | 진입점 | 번호 메뉴로 안내 |
+| `privacy-kr` | 직행 | 한국 PIPA 전용 |
+| `privacy-eu` | 직행 | EU GDPR 전용 (영문) |
+| `privacy-global` | 직행 | 한국+EU 병기 |
+
+```
+/privacy-terms    → 1·2·3 번호 메뉴 → 해당 스킬 호출 안내
+/privacy-kr       → 한국어 인터뷰 직행
+/privacy-eu       → 영문 GDPR 인터뷰 직행
+/privacy-global   → 공통+EU 인터뷰로 두 세트 생성
+```
 
 ## 특징
 
@@ -147,20 +165,26 @@ Claude Code에서:
 - **shadcn/ui** (자동 설치 지원)
 - **MDX** (자동 설치 지원)
 
-## 디렉토리 구조 (v2.2)
+## 디렉토리 구조 (v3.0)
 
 ```
 korean-privacy-terms/
-├── SKILL.md                    # 진입점
+├── SKILL.md                    # 레거시 진입점 (v2.x 호환)
 ├── ROADMAP.md                  # 장기 확장 계획 (CCPA·APPI·PIPL 등)
 │
-├── jurisdictions/              # 관할법별 법령·템플릿 (단일 소스)
+├── skills/                     # v3.0 하위 스킬 패키지
+│   ├── privacy-terms/          # 진입점 스킬 (번호 메뉴 라우팅)
+│   ├── privacy-kr/             # 한국 PIPA 전용
+│   ├── privacy-eu/             # EU GDPR 전용 (영문)
+│   └── privacy-global/         # 한국+EU 병기
+│
+├── jurisdictions/              # 관할법별 법령·템플릿 (공유 자산)
 │   ├── kr-pipa/                # 🇰🇷 한국 PIPA + 약관규제법
 │   │   ├── privacy-policy.ko.mdx.tmpl
 │   │   ├── privacy-policy.en.mdx.tmpl
 │   │   ├── terms-of-service.ko.mdx.tmpl
 │   │   └── terms-of-service.en.mdx.tmpl
-│   └── eu-gdpr/                # 🇪🇺 EU GDPR + CRD + DSA (v2.0/2.2)
+│   └── eu-gdpr/                # 🇪🇺 EU GDPR + CRD + DSA
 │       ├── gdpr-checklist.md
 │       ├── terms-checklist.md
 │       ├── privacy-notice.en.mdx.tmpl
