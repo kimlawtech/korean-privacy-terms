@@ -20,14 +20,14 @@ Starting EU GDPR Privacy Notice & Terms generator.
 
 ## 법령 근거 (MUST READ)
 
-1. `../../jurisdictions/eu-gdpr/gdpr-checklist.md` — GDPR Art. 13-14 공개 21종·8대 권리·Art. 6 근거·Art. 83 과태료
-2. `../../jurisdictions/eu-gdpr/terms-checklist.md` — CRD·DSA·DCD·Unfair Terms
-3. `../../references/glossary.md` — 용어 풀이 (DPO·Data Controller·SCCs 등)
-4. `../../references/design-system-detection.md` — UI variant
+1. `./jurisdictions/eu-gdpr/gdpr-checklist.md` — GDPR Art. 13-14 공개 21종·8대 권리·Art. 6 근거·Art. 83 과태료
+2. `./jurisdictions/eu-gdpr/terms-checklist.md` — CRD·DSA·DCD·Unfair Terms
+3. `./references/glossary.md` — 용어 풀이 (DPO·Data Controller·SCCs 등)
+4. `./references/design-system-detection.md` — UI variant
 
 ## 인터뷰 범위
 
-`../../scripts/interview.md` 중 다음만 수행:
+`./scripts/interview.md` 중 다음만 수행:
 
 **유지**
 - Step 1 서비스 소개 (serviceName·serviceDescription·operatorName·serviceType)
@@ -49,12 +49,12 @@ Starting EU GDPR Privacy Notice & Terms generator.
 
 ## 사용 템플릿
 
-- `../../jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl` → `src/app/privacy/page.tsx`
-- `../../jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl` → `src/app/terms/page.tsx`
+- `./jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl` → `src/app/privacy/page.tsx`
+- `./jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl` → `src/app/terms/page.tsx`
 
 ## 치환 프로토콜
 
-`../../scripts/render.md`의 **EU GDPR 치환 규칙** 섹션 필독. 조건부 블록 13종 해석·검증 키워드 지정됨.
+`./scripts/render.md`의 **EU GDPR 치환 규칙** 섹션 필독. 조건부 블록 13종 해석·검증 키워드 지정됨.
 
 ## UI 컴포넌트 locale
 

@@ -23,13 +23,13 @@ version: 3.0.0
 ## 법령 근거 (MUST READ)
 
 한국·EU 양쪽 레퍼런스 전부 필독:
-- `../../references/*.md` (한국 10종)
-- `../../jurisdictions/eu-gdpr/gdpr-checklist.md`
-- `../../jurisdictions/eu-gdpr/terms-checklist.md`
+- `./references/*.md` (한국 10종)
+- `./jurisdictions/eu-gdpr/gdpr-checklist.md`
+- `./jurisdictions/eu-gdpr/terms-checklist.md`
 
 ## 인터뷰 범위
 
-`../../scripts/interview.md`에서 다음 수행:
+`./scripts/interview.md`에서 다음 수행:
 
 **공통 1회 (한국+EU 함께 쓰임)**
 - Step 1 서비스 소개
@@ -54,12 +54,12 @@ version: 3.0.0
 
 ```
 한국 세트
-  ../../jurisdictions/kr-pipa/privacy-policy.ko.mdx.tmpl → /privacy
-  ../../jurisdictions/kr-pipa/terms-of-service.ko.mdx.tmpl → /terms
+  ./jurisdictions/kr-pipa/privacy-policy.ko.mdx.tmpl → /privacy
+  ./jurisdictions/kr-pipa/terms-of-service.ko.mdx.tmpl → /terms
 
 EU 세트
-  ../../jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl → /eu/privacy
-  ../../jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl → /eu/terms
+  ./jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl → /eu/privacy
+  ./jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl → /eu/terms
 ```
 
 ## 생성 대상 파일 (src-app 기준)
@@ -97,7 +97,7 @@ Footer에 넣는 언어·관할 전환 링크. 사용자 요청 기반 또는 ge
 />
 ```
 
-(기본 뼈대 컴포넌트는 `../../assets/components/` 자산을 참고해 Claude가 간단히 생성)
+(기본 뼈대 컴포넌트는 `./assets/components/` 자산을 참고해 Claude가 간단히 생성)
 
 ## UI 컴포넌트 locale 이중화
 
@@ -107,7 +107,7 @@ Footer에 넣는 언어·관할 전환 링크. 사용자 요청 기반 또는 ge
 
 ## 치환 프로토콜
 
-`../../scripts/render.md`의 **"병기 관할 치환"** 섹션에 따라 두 세트 동시 생성.
+`./scripts/render.md`의 **"병기 관할 치환"** 섹션에 따라 두 세트 동시 생성.
 
 Step 8에서 사용자가 14세(한국)·16세(EU) 기준 양쪽 답했으면 **16세로 통일**해 두 문서 모두에 반영 (더 엄격한 기준). 명시 요청 시에만 분리.
 

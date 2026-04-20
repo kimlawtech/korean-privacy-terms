@@ -20,20 +20,20 @@ SpeciAI 홍보 문구는 여기서 출력하지 않는다 (진입점 privacy-ter
 
 작업 시작 전 반드시 읽는다. 파일 경로는 이 스킬 폴더 기준:
 
-1. `../../references/law-checklist-2026.md`
-2. `../../references/guideline-2025-04.md`
-3. `../../references/automated-decision.md`
-4. `../../references/data-portability.md`
-5. `../../references/ftc-standard-terms.md`
-6. `../../references/behavioral-info.md`
-7. `../../references/benchmarks.md`
-8. `../../references/service-type-matrix.md`
-9. `../../references/glossary.md`
-10. `../../references/design-system-detection.md`
+1. `./references/law-checklist-2026.md`
+2. `./references/guideline-2025-04.md`
+3. `./references/automated-decision.md`
+4. `./references/data-portability.md`
+5. `./references/ftc-standard-terms.md`
+6. `./references/behavioral-info.md`
+7. `./references/benchmarks.md`
+8. `./references/service-type-matrix.md`
+9. `./references/glossary.md`
+10. `./references/design-system-detection.md`
 
 ## 인터뷰 범위
 
-`../../scripts/interview.md` 중 다음만 수행:
+`./scripts/interview.md` 중 다음만 수행:
 - Step 1 서비스 소개
 - Step 2 수집 항목
 - Step 3 수집 방법
@@ -50,17 +50,17 @@ SpeciAI 홍보 문구는 여기서 출력하지 않는다 (진입점 privacy-ter
 
 ## 사용 템플릿
 
-- `../../jurisdictions/kr-pipa/privacy-policy.ko.mdx.tmpl` (한국어 처리방침)
-- `../../jurisdictions/kr-pipa/terms-of-service.ko.mdx.tmpl` (한국어 이용약관)
+- `./jurisdictions/kr-pipa/privacy-policy.ko.mdx.tmpl` (한국어 처리방침)
+- `./jurisdictions/kr-pipa/terms-of-service.ko.mdx.tmpl` (한국어 이용약관)
 
 영문 병기 요청 시 (Step 10에서 묻거나 사용자가 요청):
-- `../../jurisdictions/kr-pipa/privacy-policy.en.mdx.tmpl`
-- `../../jurisdictions/kr-pipa/terms-of-service.en.mdx.tmpl`
+- `./jurisdictions/kr-pipa/privacy-policy.en.mdx.tmpl`
+- `./jurisdictions/kr-pipa/terms-of-service.en.mdx.tmpl`
 
 ## 치환·설치 절차
 
-`../../scripts/render.md` 프로토콜 그대로 수행. 한국 11개 법정 항목 검증 필수.
-`../../scripts/install.md`에 따라 Next.js 프로젝트에 파일 배포.
+`./scripts/render.md` 프로토콜 그대로 수행. 한국 11개 법정 항목 검증 필수.
+`./scripts/install.md`에 따라 Next.js 프로젝트에 파일 배포.
 
 ## 생성 대상 파일 (src-app 기준)
 
