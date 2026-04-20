@@ -147,6 +147,45 @@ npm install -D @tailwindcss/typography
 중요: `next.config.{ts,mjs}`에 `createMDX` 래퍼를 추가할 때, Turbopack 환경에서는 `remarkPlugins`를 **문자열 배열로 전달**해야 한다 (`[["remark-gfm"]]`). 함수 참조 시 `loader does not have serializable options` 에러.
 템플릿: `assets/config/next.config.ts.tmpl`.
 
+### 3단계 관할별 워크플로우 분기 (v2.3 명시)
+
+Step 0 결과에 따라 인터뷰 범위가 달라진다.
+
+**`jurisdictions: ["kr-pipa"]`** (한국만)
+- Step 1~9 + Step 10·11
+- Step 9-EU 건너뜀
+- 템플릿: `jurisdictions/kr-pipa/*.ko.mdx.tmpl`
+- 영문 병기 시 `*.en.mdx.tmpl` 추가 (PIPA 조문 영문 번역)
+
+**`jurisdictions: ["eu-gdpr"]`** (EU만)
+- Step 1·2·6·9 (서비스·정보·처리위탁·시행일) 유지
+- Step 3·4·5·7·8 GDPR 재해석 (아래)
+- Step 9-EU 전부 수집 (Q9E-1~11)
+- 한국 전용 질문(CPO·사업자등록번호·전자상거래법 보유기간·14세 미만 특례) 생략
+- 템플릿: `jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl`, `terms-of-service.en.mdx.tmpl`
+
+**`jurisdictions: ["kr-pipa", "eu-gdpr"]`** (병기)
+- Step 1·2·6·9 공통 1회만 수집
+- Step 7 (CPO) 한국 전용으로 수집
+- Step 8 (14세 미만) 한국·EU 각각 기준 수집 — **16세로 통일 권장**
+- Step 9-EU 전부 수집
+- 한국·EU 두 세트 문서 동시 생성
+  - `/privacy` (한국어 PIPA)
+  - `/eu/privacy` (영문 GDPR)
+  - `/terms` (한국어 KFTC)
+  - `/eu/terms` (영문 CRD·DSA)
+
+### Step 4·5·7의 GDPR 재해석
+
+EU 단독/병기 시 기존 Step 답을 GDPR 카테고리로 재매핑한다. 사용자에게 다시 묻지 않고 Claude가 자동 변환 후 Step 9-EU에서 확인 받는다.
+
+| 한국 질문 | GDPR 대응 |
+|----------|-----------|
+| Step 4 처리 목적 | Art. 6 Legal Basis로 매핑 (Q9E-4) |
+| Step 5 제3자 제공 | Art. 13(1)(e) Recipients (Q9E-8) |
+| Step 6 처리위탁 | Art. 28 Processors + 국제 이전 (Q9E-7) |
+| Step 7 CPO | GDPR DPO 겸임 또는 별도 (Q9E-2) |
+
 ### 3단계: 사용자 인터뷰 — 성격 스크리닝 먼저
 
 **v2.1부터 인터뷰 첫 단계는 "서비스 성격 스크리닝"이다.** 세부 질문 전에 다음을 먼저 확정:

@@ -535,6 +535,241 @@ Google Analytics, Meta Pixel 같은 **추적 도구**를 써서 맞춤형 광고
 
 ---
 
+## Step 9-EU. EU GDPR 전용 추가 질문 (v2.3, 관할에 EU 포함 시에만)
+
+Step 0에서 `jurisdictions`에 `eu-gdpr`이 포함되면 Step 9 이후에 EU 고유 질문을 추가로 묻는다. 한국만(`kr-pipa`)이면 이 섹션 건너뛴다.
+
+### Q9E-1. 사업자 기본 정보 (EU 공시 필수)
+
+```
+EU에서는 약관·Privacy Notice에 사업자 정보를 자세히 공개해야 합니다.
+다음 알려주세요.
+
+1. 운영 법인 정식 주소 (예: "서울시 강남구 테헤란로 123, 10층")
+2. 사업자등록번호
+3. VAT 번호 (EU 부가세 번호가 있으면, 없으면 "없음")
+4. 연락 가능한 전화번호
+5. 연락 이메일 (privacy@ 같은 전용 주소 권장)
+```
+
+수집 변수
+- `operatorAddress`
+- `registrationNumber`
+- `hasVatNumber` (boolean), `vatNumber`
+- `contactPhone`
+- `contactEmail`
+
+### Q9E-2. DPO (Data Protection Officer) 지정 여부
+
+```
+DPO(Data Protection Officer, 개인정보 보호책임자)를 따로 지정하셨나요?
+GDPR은 다음 경우 DPO 지정이 의무입니다.
+  - 공공기관
+  - 대규모 프로파일링·모니터링
+  - 대규모 민감정보 처리
+
+해당 없으면 "없음"으로 답하시면 돼요.
+한국 CPO를 겸임해도 되고, 별도 지정했으면 DPO 정보를 따로 받습니다.
+```
+
+수집 변수
+- `hasDPO` (boolean)
+- `dpoName`, `dpoEmail` (있을 때만)
+
+### Q9E-3. EU Representative (해외 사업자 필수)
+
+```
+운영 법인이 EU 밖(한국 포함)에 있고 EU 사용자에게 서비스하면
+EU 안에 연락 창구 역할을 할 EU Representative가 필요해요.
+GDPR Art. 27 요구입니다.
+
+지정하셨나요?
+  - 예 → Representative 정보 (이름/주소/이메일)
+  - 아니오 → 나중에 지정 권장 안내 추가
+```
+
+수집 변수
+- `hasEuRepresentative` (boolean)
+- `euRepName`, `euRepAddress`, `euRepEmail` (있을 때만)
+
+자동 추론
+- `operatorCountry ≠ EU member` → `hasEuRepresentative` 확인 강제
+- 한국 법인이면 거의 항상 필요
+
+### Q9E-4. 처리 카테고리·법적 근거 (Art. 6)
+
+```
+GDPR은 개인정보 처리할 때마다 6가지 법적 근거 중 하나를 골라야 합니다.
+
+각 목적에 대해 어느 근거를 쓰시나요?
+
+  (a) Consent — 동의 (마케팅 등)
+  (b) Contract — 계약 이행 (서비스 제공)
+  (c) Legal obligation — 법적 의무 (세금·회계)
+  (d) Vital interests — 생명 보호 (응급 의료 등)
+  (e) Public task — 공적 업무
+  (f) Legitimate interests — 정당한 이익 (부정 탐지 등)
+
+예: "회원 관리는 Contract, 마케팅은 Consent, 부정 탐지는 Legitimate interests"
+```
+
+수집 변수
+- `purposes[]` = `[{ purpose, legalBasis, legitimateInterestDetail? }]`
+  - `legalBasis`: `consent | contract | legal_obligation | vital_interests | public_task | legitimate_interests`
+  - `legitimateInterestDetail`: Art. 6(f) 선택 시 구체적 이익 명시
+
+### Q9E-5. Special Category (Art. 9) — 특수 범주 정보
+
+```
+다음 정보를 처리하세요? (해당 사항 모두)
+
+[ ] 인종·민족
+[ ] 정치적 견해
+[ ] 종교·철학적 신념
+[ ] 노동조합 가입
+[ ] 유전자·생체 정보 (지문·얼굴인식 포함)
+[ ] 건강 정보
+[ ] 성생활·성적 지향
+[ ] 해당 없음
+
+있으면 어떤 예외 근거로 처리하시나요? (explicit consent가 가장 일반적)
+```
+
+수집 변수
+- `collectsSpecialCategory` (boolean)
+- `specialCategoryItems` (string)
+- `specialCategoryBasis` (string, Art. 9(2) 예외)
+
+### Q9E-6. 데이터 카테고리·출처
+
+```
+수집하는 개인정보를 GDPR 방식으로 분류해주세요.
+(Step 2에서 답하신 내용을 GDPR 카테고리로 정리합니다)
+
+예:
+  - 카테고리: Contact data — 항목: 이메일·전화 — 출처: direct (사용자 입력)
+  - 카테고리: Usage data — 항목: IP·쿠키 — 출처: automatic
+  - 카테고리: Third-party data — 항목: Google 프로필 — 출처: Google OAuth
+```
+
+수집 변수
+- `dataCategories[]` = `[{ category, items, source }]`
+
+Step 2와 자동 연계 가능. Claude가 Step 2 답을 보고 초안 제시 후 확인.
+
+### Q9E-7. 국제 이전 (Chapter V)
+
+```
+개인정보를 EU·EEA 밖으로 보내시나요? (예: 미국 AWS, 한국 본사)
+  - 예 → 어느 국가로, 어떤 안전장치로 보내나요?
+  - 아니오
+
+안전장치 종류
+  - Adequacy Decision (EU가 승인한 국가: 영국·스위스·일본·한국·뉴질랜드·이스라엘 등)
+  - SCCs (Standard Contractual Clauses, EU Commission 승인 계약)
+  - BCRs (Binding Corporate Rules, 대기업 내부 규정)
+  - Derogations (예외 사유, 제한적 사용)
+
+예: "AWS 미국 — SCCs", "한국 본사 — Adequacy Decision"
+```
+
+수집 변수
+- `hasInternationalTransfer` (boolean)
+- `internationalTransfers[]` = `[{ country, safeguard, adequacyDecision? }]`
+
+자동 추론
+- Step 6(처리위탁)에서 감지한 업체의 국가 목록을 기반으로 초안 제시
+- Stripe·AWS 미국 → SCCs 기본값
+- Vercel 미국 → SCCs
+- 한국 AWS 서울 리전 → Adequacy Decision
+
+### Q9E-8. 제3자 수신인 (Art. 13(1)(e))
+
+```
+개인정보를 받는 제3자(처리위탁 제외, 별도 독립 컨트롤러)가 있나요?
+예: 결제 대행사(자체 컨트롤러로 전환 시), 광고 네트워크, 분석 파트너
+
+없으면 "없음"
+```
+
+수집 변수
+- `hasRecipients` (boolean)
+- `recipients[]` = `[{ name, purpose, category }]`
+
+### Q9E-9. 서비스 유형 (GDPR 관점 재확인)
+
+```
+EU 약관(Terms of Service)에 몇 가지 추가 확인이 필요해요.
+
+1) 유료 서비스인가요?
+   - 예 → 결제 방법·통화·구독 갱신 여부
+   - 아니오 → 무료
+
+2) 회원가입이 필수인가요?
+   - 예 → 계정 관리 조항 포함
+   - 아니오 → 비회원 이용 허용
+
+3) 사용자 생성 콘텐츠(UGC)가 있나요?
+   - 예 → 저작권 조항 + DSA 플랫폼 의무 검토 대상
+   - 아니오
+
+4) 온라인 플랫폼인가요? (사용자가 공개 콘텐츠 올림·상호작용)
+   - 예 → DSA Art. 14·17·20~22 적용 (콘텐츠 조정·이유 통지·이의신청)
+   - 아니오 → 단순 사이트
+
+5) 쿠키 정책을 별도 문서로 공개하시나요?
+   - 예 → /cookie-policy 별도 생성
+   - 아니오 → Privacy Notice 안에 포함
+```
+
+수집 변수
+- `isPaidService` (boolean)
+- `paymentMethods` (string, "카드·계좌이체" 등)
+- `currency` (string, "EUR·USD·KRW")
+- `hasSubscription` (boolean)
+- `requiresAccount` (boolean)
+- `hasUserGeneratedContent` (boolean)
+- `isPlatformService` (boolean)
+- `hasCookiePolicy` (boolean)
+- `complaintUrl` (platform일 때, 이의신청 URL)
+- `noticeUrl` (platform일 때, 불법 콘텐츠 신고 URL)
+
+### Q9E-10. 관할·준거법
+
+```
+분쟁 시 어느 나라 법을 적용하고, 어느 법원에서 해결하시나요?
+
+한국 법인이 EU 대상 서비스라면 보통:
+  - Governing Law: 대한민국 법 (Korean law)
+  - Jurisdiction: 서울중앙지방법원 등
+  - 단, EU 소비자는 Rome I·Brussels I bis에 따라 **거주지 법원** 가능
+
+이 조항은 템플릿에 자동 삽입되지만, 우선 지정할 관할 법·법원만 알려주세요.
+
+예: "Korean law / Seoul Central District Court"
+```
+
+수집 변수
+- `governingLaw` (string)
+- `governingJurisdiction` (string)
+
+### Q9E-11. 아동 연령 기준 (Art. 8)
+
+```
+Step 8에서 14세 미만 허용 여부를 이미 물었어요.
+GDPR은 **16세 미만**을 기본 기준으로 삼고, 회원국별로 13~16세 사이에서 정할 수 있어요.
+
+어느 연령을 최소 동의 가능 연령으로 쓰시나요?
+한국 법 14세와 병기할 경우 **더 엄격한 16세 권장**.
+```
+
+수집 변수
+- `minimumAge` (number, 13~18)
+- `childAgeThreshold` (number, GDPR 관련)
+- `parentalConsentMethod` (string, 한국 Step 8과 동일 값 재사용 가능)
+
+---
+
 ## Step 10. 디자인 스타일 (자동 감지 후 확인)
 
 **이 단계는 Claude가 먼저 프로젝트를 분석한 후 시작한다.** `references/design-system-detection.md` 참조.

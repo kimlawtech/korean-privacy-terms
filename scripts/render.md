@@ -200,7 +200,111 @@ processors:
 
 1. 생성된 MDX 파일 Read
 2. `grep '{{'` 패턴 검색 — 0건이어야 함
-3. 법정 11개 항목 키워드 검색 — 모두 있어야 함
+3. 관할별 필수 항목 키워드 검색 — 모두 있어야 함 (한국 11개 / GDPR 아래 목록)
 4. 누락·잔존 발견 시 즉시 수정 후 재Write
 
 이 절차가 지켜지면 별도 템플릿 엔진 없이도 결정론적 치환 달성.
+
+---
+
+## EU GDPR 치환 규칙 (v2.3 추가)
+
+관할에 `eu-gdpr`이 포함되면 다음 추가 규칙을 따른다.
+
+### 사용 템플릿
+
+```
+jurisdictions/eu-gdpr/privacy-notice.en.mdx.tmpl  → /privacy or /eu/privacy
+jurisdictions/eu-gdpr/terms-of-service.en.mdx.tmpl → /terms or /eu/terms
+```
+
+### 변수 소스
+
+Step 9-EU에서 수집한 값을 그대로 씀. 한국 Step 1~9 공통 변수(`serviceName` 등)는 재사용.
+
+### 조건부 블록 해석
+
+| 템플릿 블록 | 조건 | 처리 |
+|------------|------|------|
+| `{{#if hasDPO}}` | Q9E-2 답 | DPO 섹션 유지·삭제 |
+| `{{#if hasEuRepresentative}}` | Q9E-3 답 | EU Representative 섹션 유지·삭제 |
+| `{{#if hasVatNumber}}` | Q9E-1 답 | VAT 번호 줄 유지·삭제 |
+| `{{#if collectsSpecialCategory}}` | Q9E-5 답 | Art. 9 섹션 유지·삭제 |
+| `{{#if hasRecipients}}` | Q9E-8 답 | 수신인 테이블 유지 |
+| `{{#if hasInternationalTransfer}}` | Q9E-7 답 | 국제 이전 섹션 유지 |
+| `{{#if isPaidService}}` | Q9E-9 답 | Terms 결제·환급 섹션 유지 |
+| `{{#if hasSubscription}}` | Q9E-9 답 | 구독 자동갱신 섹션 유지 |
+| `{{#if isPlatformService}}` | Q9E-9 답 | DSA Art. 14·17·20~22 섹션 유지 |
+| `{{#if hasUserGeneratedContent}}` | Q9E-9 답 | UGC 저작권 조항 유지 |
+| `{{#if hasCookiePolicy}}` | Q9E-9 답 | Cookie Policy 링크 유지 |
+| `{{#if usesCookies}}` | 자동 (Step 6 기반) | 쿠키 안내 유지 |
+| `{{#if hasAutomatedDecision}}` | Step 8 답 | Art. 22 섹션 유지 |
+| `{{#if isChildFriendly}}` | Step 8 답 | Art. 8 아동 섹션 유지 |
+
+### 반복 블록 해석
+
+```handlebars
+{{#each purposes}}
+{{this.purpose}} — Legal basis: {{this.legalBasis}}
+{{#if this.legitimateInterestDetail}}Specific: {{this.legitimateInterestDetail}}{{/if}}
+{{/each}}
+```
+
+`purposes[]`의 각 원소에 `legalBasis`(6종) 중 하나가 박혀야 한다. Q9E-4에서 수집한 구조를 그대로 사용.
+
+```handlebars
+{{#each dataCategories}}
+{{this.category}} | {{this.items}} | {{this.source}}
+{{/each}}
+```
+
+Step 2 답을 GDPR 카테고리로 재매핑한 Q9E-6 결과.
+
+```handlebars
+{{#each internationalTransfers}}
+{{this.country}} — Safeguard: {{this.safeguard}}
+{{/each}}
+```
+
+Q9E-7 답. `safeguard`는 `adequacy|SCCs|BCRs|derogation` 중 하나.
+
+### EU 치환 검증 (Write 후 필수)
+
+GDPR 필수 공개 항목이 모두 포함됐는지 키워드 그렙:
+
+- [ ] Controller / Data Controller
+- [ ] Legal basis / Art. 6
+- [ ] Right of Access / Rectification / Erasure / Restriction / Portability / Object
+- [ ] Supervisory authority / EDPB
+- [ ] 72 hours / breach notification (해당 시)
+- [ ] DPO / Data Protection Officer (hasDPO=true일 때)
+- [ ] International transfer / SCCs (hasInternationalTransfer=true일 때)
+
+### EU Terms 치환 검증
+
+CRD + DSA 필수:
+
+- [ ] 14-day withdrawal / Right of Withdrawal
+- [ ] Model withdrawal form
+- [ ] ODR / https://ec.europa.eu/consumers/odr
+- [ ] Brussels I bis / consumer jurisdiction
+- [ ] Content moderation (platform일 때)
+- [ ] Statement of Reasons (Art. 17 DSA)
+
+### 병기 관할 치환
+
+`jurisdictions: ["kr-pipa", "eu-gdpr"]`이면 **두 쌍의 파일 생성**:
+
+```
+src/content/legal/privacy-policy.mdx          ← kr-pipa/privacy-policy.ko
+src/content/legal/terms-of-service.mdx        ← kr-pipa/terms-of-service.ko
+src/app/privacy/page.tsx                       ← locale="ko"
+src/app/terms/page.tsx                         ← locale="ko"
+
+src/content/legal/eu/privacy-notice.mdx        ← eu-gdpr/privacy-notice.en
+src/content/legal/eu/terms-of-service.mdx      ← eu-gdpr/terms-of-service.en
+src/app/eu/privacy/page.tsx                    ← locale="en"
+src/app/eu/terms/page.tsx                      ← locale="en"
+```
+
+`app/layout.tsx`에 언어·관할 전환 링크 안내 포함.
