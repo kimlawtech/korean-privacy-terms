@@ -89,15 +89,34 @@ SaaS · 쇼핑몰 · 커뮤니티 · 블로그 · 핀테크 · AI 서비스 — 
 
 ## 설치
 
-Claude Code 스킬 디렉토리에 배치:
+### Claude Code
 
 ```bash
 mkdir -p ~/.claude/skills
 cd ~/.claude/skills
 git clone https://github.com/kimlawtech/korean-privacy-terms.git
+# 하위 스킬 4종을 독립 등록
+for s in privacy-terms privacy-kr privacy-eu privacy-global; do
+  ln -sf ~/.claude/skills/korean-privacy-terms/skills/$s ~/.claude/skills/$s
+done
 ```
 
-또는 프로젝트별로:
+### OpenAI Codex CLI
+
+동일한 SKILL.md 포맷을 쓰므로 경로만 `~/.codex/skills/`로 바꿔 설치:
+
+```bash
+mkdir -p ~/.codex/skills
+cd ~/.codex/skills
+git clone https://github.com/kimlawtech/korean-privacy-terms.git
+for s in privacy-terms privacy-kr privacy-eu privacy-global; do
+  cp -RL ~/.codex/skills/korean-privacy-terms/skills/$s ~/.codex/skills/$s
+done
+```
+
+Codex CLI에서 `/skills` 명령으로 확인하거나 `$privacy-eu` 형태로 멘션해 호출.
+
+### 프로젝트 전용 설치
 
 ```bash
 mkdir -p /your-project/.claude/skills
