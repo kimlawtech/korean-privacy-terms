@@ -5,6 +5,24 @@
 형식: [Keep a Changelog](https://keepachangelog.com/ko/1.1.0/)
 버전 관리: [Semantic Versioning](https://semver.org/lang/ko/)
 
+## [4.0.0] - 2026-04-22
+
+### 추가
+- **미국 CCPA/CPRA 관할 신설** (`jurisdictions/us-ccpa/`)
+  - ccpa-checklist.md: CCPA/CPRA 15개 공개 의무, 7대 권리, SPI 11종, 주요 주법(VCDPA·CPA·CTDPA·UCPA·ICDPA·KCDPA·RIDPA) 비교
+  - privacy-policy.en.mdx.tmpl: 2026.1.1 CPPA 갱신 규정 반영
+- **privacy-us 하위 스킬** (영문 CCPA/CPRA 전용)
+  - Step 9-US 10문항 (Q9US-1~10)
+  - Sensitive Personal Information 처리·Limit 링크
+  - Do Not Sell/Share 링크 자동 삽입
+  - GPC(Global Privacy Control) 브라우저 신호 준수
+  - ADMT(Automated Decision-Making) 2026 공개 의무
+- 진입점 메뉴에 "3. 미국 서비스" 옵션 추가 (기존 3번 글로벌 → 4번으로 이동)
+
+### 변경
+- privacy-terms 메뉴 3→4 옵션으로 확장
+- 버전 3.0.0 → 4.0.0
+
 ## [3.0.0] - 2026-04-20
 
 ### 추가

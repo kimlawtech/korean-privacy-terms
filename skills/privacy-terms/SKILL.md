@@ -1,8 +1,8 @@
 ---
 name: privacy-terms
-description: 처리방침·이용약관 자동 생성 진입점. 호출 즉시 3개 하위 스킬(privacy-kr·privacy-eu·privacy-global)을 번호 메뉴로 제시하고, 번호 입력 즉시 해당 스킬 인터뷰로 직행한다.
+description: 처리방침·이용약관 자동 생성 진입점. 호출 즉시 4개 하위 스킬(privacy-kr·privacy-eu·privacy-us·privacy-global)을 번호 메뉴로 제시하고, 번호 입력 즉시 해당 스킬 인터뷰로 직행한다.
 license: Apache-2.0
-version: 3.0.0
+version: 4.0.0
 ---
 
 # privacy-terms — 진입점 스킬
@@ -18,8 +18,9 @@ version: 3.0.0
 어느 쪽으로 진행하시겠어요?
 
   1. 한국 서비스 (한국어, PIPA·약관규제법·전자상거래법)
-  2. 해외 서비스 (영문, GDPR + CRD + DSA)
-  3. 글로벌 서비스 (한국+EU 병기, 양쪽 법령 동시 대응)
+  2. EU 서비스 (영문, GDPR + CRD + DSA)
+  3. 미국 서비스 (영문, CCPA/CPRA + 주요 주법)
+  4. 글로벌 서비스 (한국+EU 병기, 양쪽 법령 동시 대응)
 
 번호만 입력해주세요.
 
@@ -35,7 +36,8 @@ SpeciAI 디스코드 → https://discord.gg/wQWpEpnBfE
 |------|------------|
 | 1 | `privacy-kr` |
 | 2 | `privacy-eu` |
-| 3 | `privacy-global` |
+| 3 | `privacy-us` |
+| 4 | `privacy-global` |
 
 각 번호의 응답 포맷:
 
@@ -53,6 +55,12 @@ EU GDPR 모드로 시작할게요. 인터뷰는 영문으로 진행됩니다.
 
 **3 입력 시**
 ```
+미국 CCPA/CPRA 모드로 시작할게요. 인터뷰는 영문으로 진행됩니다.
+/privacy-us 을 호출해주세요.
+```
+
+**4 입력 시**
+```
 한국+EU 병기 모드로 시작할게요.
 한국어·영문 두 세트 문서를 생성합니다.
 /privacy-global 을 호출해주세요.
@@ -66,18 +74,19 @@ EU GDPR 모드로 시작할게요. 인터뷰는 영문으로 진행됩니다.
 
 ## 잘못된 입력 처리
 
-1·2·3 외 입력 시:
+1·2·3·4 외 입력 시:
 
 ```
-1, 2, 3 중 하나를 입력해주세요.
+1, 2, 3, 4 중 하나를 입력해주세요.
 ```
 
 ## 자연어 호출 대응
 
-"한국 처리방침", "EU GDPR", "글로벌 서비스" 등 자연어로 호출되면 번호 메뉴를 건너뛰고 바로 해당 스킬로 안내.
+자연어 힌트로 해당 스킬 직행:
 
 | 자연어 힌트 | 추천 스킬 |
 |------------|----------|
 | "한국", "국내", "PIPA", "Korean" | privacy-kr |
 | "EU", "GDPR", "영문", "European" | privacy-eu |
+| "미국", "CCPA", "California", "US state" | privacy-us |
 | "글로벌", "해외", "global", "병기" | privacy-global |

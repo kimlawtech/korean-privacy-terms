@@ -16,7 +16,7 @@
 > → [discord.gg/wQWpEpnBfE](https://discord.gg/wQWpEpnBfE)
 
 **라이선스**: Apache-2.0
-**버전**: 3.0.0
+**버전**: 4.0.0
 **저자**: [@kimlawtech](https://github.com/kimlawtech)
 
 ## v3.0 하위 스킬 체계
@@ -28,12 +28,14 @@
 | `privacy-terms` | 진입점 | 번호 메뉴로 안내 |
 | `privacy-kr` | 직행 | 한국 PIPA 전용 |
 | `privacy-eu` | 직행 | EU GDPR 전용 (영문) |
+| `privacy-us` | 직행 | 미국 CCPA/CPRA 전용 (영문) |
 | `privacy-global` | 직행 | 한국+EU 병기 |
 
 ```
-/privacy-terms    → 1·2·3 번호 메뉴 → 해당 스킬 호출 안내
+/privacy-terms    → 1·2·3·4 번호 메뉴 → 해당 스킬 호출 안내
 /privacy-kr       → 한국어 인터뷰 직행
 /privacy-eu       → 영문 GDPR 인터뷰 직행
+/privacy-us       → 영문 CCPA/CPRA 인터뷰 직행
 /privacy-global   → 공통+EU 인터뷰로 두 세트 생성
 ```
 

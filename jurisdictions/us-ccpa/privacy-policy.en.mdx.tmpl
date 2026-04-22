@@ -1,0 +1,251 @@
+{/*
+This Privacy Policy is drafted in accordance with the California Consumer Privacy Act (CCPA),
+as amended by the California Privacy Rights Act (CPRA), and the updated CPPA regulations
+effective 2026-01-01. It also addresses common requirements of other US state privacy laws
+(VCDPA, CPA, CTDPA, UCPA, ICDPA, KCDPA, RIDPA).
+Independent legal review by qualified US counsel is required before production deployment.
+CCPA/CPRA penalties: up to USD 7,500 per intentional violation; USD 100-750 per consumer in data breach cases.
+*/}
+
+# Privacy Policy — {{serviceName}}
+
+{{operatorName}} ("we", "us", "our") respects your privacy. This Privacy Policy explains how we collect, use, disclose, and protect personal information of consumers, including California residents under the CCPA/CPRA and residents of other US states with comprehensive privacy laws.
+
+Effective Date {{effectiveDate}}
+Last Updated {{lastRevisedDate}}
+
+## 1. Scope
+
+This Policy applies to personal information we collect from visitors and users of {{serviceName}} (the "Service"), including in the capacity of a "business" under CCPA/CPRA or "controller" under other US state laws.
+
+## 2. Contact Information
+
+- **Entity**: {{operatorName}}
+- **Address**: {{operatorAddress}}
+- **Email**: {{contactEmail}}
+- **Phone**: {{contactPhone}}
+{{#if hasUsPrivacyOfficer}}
+- **Privacy Officer**: {{privacyOfficerName}} ({{privacyOfficerEmail}})
+{{/if}}
+
+## 3. Categories of Personal Information We Collect
+
+In the last 12 months we have collected the following categories of personal information (as defined by CCPA §1798.140(v)):
+
+{{#each piCategories}}
+### {{this.category}}
+- Examples: {{this.examples}}
+- Sources: {{this.sources}}
+- Purposes: {{this.purposes}}
+- Retention: {{this.retention}}
+{{/each}}
+
+{{#if collectsSensitivePI}}
+## 4. Sensitive Personal Information (CPRA §1798.140(ae))
+
+We collect the following categories of Sensitive Personal Information ("SPI"):
+
+{{#each spiCategories}}
+- **{{this.category}}** — Purpose: {{this.purpose}}
+{{/each}}
+
+### Limit the Use of My Sensitive Personal Information
+
+You have the right to direct us to limit our use of your SPI to purposes necessary to perform the services you requested, plus security, fraud prevention, and certain other permitted uses under CPRA §1798.121.
+
+To exercise this right, visit our dedicated page: **[Limit the Use of My Sensitive Personal Information](/limit-spi)** or email {{contactEmail}} with subject "Limit SPI".
+{{else}}
+## 4. Sensitive Personal Information
+
+We do **not** collect Sensitive Personal Information as defined in CPRA §1798.140(ae).
+{{/if}}
+
+## 5. Sources of Personal Information
+
+We collect personal information from the following sources:
+- Directly from you (account registration, purchases, support requests)
+- Automatically from your devices (cookies, web beacons, server logs)
+{{#if hasThirdPartySources}}
+- Third parties: {{thirdPartySources}}
+{{/if}}
+
+## 6. Business and Commercial Purposes
+
+We use personal information for the following purposes:
+
+{{#each businessPurposes}}
+- **{{this.purpose}}** — {{this.description}}
+{{/each}}
+
+## 7. Disclosure of Personal Information
+
+### 7.1 Categories Disclosed for Business Purposes
+
+In the last 12 months we disclosed the following categories to service providers for the purposes listed:
+
+{{#each serviceProviderDisclosures}}
+- **{{this.category}}** → {{this.recipient}} ({{this.purpose}})
+{{/each}}
+
+### 7.2 Sale or Sharing of Personal Information
+
+{{#if sellsOrShares}}
+In the last 12 months, we have **sold or shared** the following categories of personal information:
+
+{{#each salesAndShares}}
+- **{{this.category}}** — Recipients: {{this.recipients}} — Purpose: {{this.purpose}}
+{{/each}}
+
+Note: "Share" includes cross-context behavioral advertising even without monetary consideration (CPRA §1798.140(ah)). If we use advertising/analytics technologies (e.g., Google Analytics, Meta Pixel), this constitutes "sharing" under CPRA.
+
+### Do Not Sell or Share My Personal Information
+
+You have the right to opt out of the sale or sharing of your personal information.
+
+Exercise this right via:
+- **[Do Not Sell or Share My Personal Information](/do-not-sell-share)** page
+- Email: {{contactEmail}} with subject "Do Not Sell"
+- Global Privacy Control (GPC) browser signal — we automatically honor GPC
+{{else}}
+In the last 12 months, we have **not sold or shared** personal information as defined under CCPA/CPRA.
+{{/if}}
+
+## 8. Your Privacy Rights
+
+If you are a California resident or a resident of another US state with a comprehensive privacy law, you have the following rights regarding your personal information:
+
+### 8.1 Right to Know
+
+You may request information about:
+- Categories of personal information we have collected about you
+- Specific pieces of personal information we hold
+- Categories of sources
+- Business or commercial purposes for collection
+- Categories of third parties with whom we share
+
+### 8.2 Right to Delete
+
+You may request deletion of personal information we collected from you, subject to certain exceptions (e.g., legal compliance, fraud prevention).
+
+### 8.3 Right to Correct
+
+You may request correction of inaccurate personal information we maintain about you.
+
+### 8.4 Right to Opt-Out of Sale or Sharing
+
+You may opt out of the sale or sharing of your personal information (see Section 7.2).
+
+{{#if collectsSensitivePI}}
+### 8.5 Right to Limit Use of Sensitive Personal Information
+
+You may direct us to use your SPI only for necessary purposes (see Section 4).
+{{/if}}
+
+### 8.6 Right to Data Portability
+
+You may request a copy of personal information in a portable, machine-readable format (JSON or CSV).
+
+### 8.7 Right to Non-Discrimination
+
+We will not discriminate against you for exercising any of these rights. We do not deny services, charge different prices, or provide different quality based on privacy rights exercise.
+
+## 9. How to Exercise Your Rights
+
+### 9.1 Submission Methods
+
+- **Online form**: {{rightsRequestUrl}}
+{{#if hasTollFree}}
+- **Toll-free number**: {{tollFreeNumber}}
+{{/if}}
+- **Email**: {{contactEmail}}
+- **Mail**: {{operatorAddress}}
+
+### 9.2 Verification
+
+We will verify your identity before processing requests. Verification may require matching 2-3 data points we already have (e.g., email, name, recent activity). For "Right to Know" requests for specific pieces of information, additional verification may be required.
+
+### 9.3 Authorized Agent
+
+You may designate an authorized agent to submit requests on your behalf. We require:
+- Written permission signed by you
+- Agent verification of their identity
+
+### 9.4 Response Time
+
+We will confirm receipt within **10 business days** and respond within **45 calendar days**. Extensions of up to 45 additional days are possible with notice (maximum 90 days total).
+
+## 10. Retention
+
+We retain personal information only as long as necessary for the purposes disclosed in this Policy, subject to legal obligations. Retention periods by category are shown in Section 3.
+
+## 11. Minors
+
+{{#if servesMinors}}
+We comply with the CPRA requirement to treat information of consumers under 16 as Sensitive Personal Information. For users under 13, we obtain verifiable parental consent in accordance with COPPA.
+{{else}}
+Our Service is not directed to children under 16. We do not knowingly collect personal information from minors under 16.
+{{/if}}
+
+{{#if hasAutomatedDecision}}
+## 12. Automated Decision-Making Technology (ADMT)
+
+Under the 2026 CPPA regulations, we disclose that we use ADMT in the following ways:
+
+{{#each admtUses}}
+- **{{this.serviceName}}**
+  - Purpose: {{this.purpose}}
+  - Logic: {{this.logic}}
+  - Significance: {{this.significance}}
+{{/each}}
+
+You may request more information about our ADMT practices and opt out where provided by law. Contact {{contactEmail}}.
+{{/if}}
+
+## 13. Security
+
+We implement reasonable security procedures appropriate to the nature of the information, including encryption at rest and in transit, access controls, regular audits, and staff training.
+
+## 14. Financial Incentives
+
+{{#if hasFinancialIncentive}}
+We offer the following financial incentive programs related to personal information (CCPA §1798.125(b)):
+
+{{#each financialIncentives}}
+- **{{this.name}}** — Terms: {{this.terms}}
+{{/each}}
+
+Participation is voluntary. You may opt out at any time.
+{{else}}
+We do not offer financial incentive programs tied to personal information collection.
+{{/if}}
+
+## 15. Other US State Privacy Rights
+
+Residents of Virginia, Colorado, Connecticut, Utah, Indiana, Kentucky, Rhode Island, and other states with comprehensive privacy laws have similar rights. To exercise these rights, use the methods in Section 9.
+
+Specific state-law nuances:
+- **Colorado** residents may use a Universal Opt-Out Mechanism
+- **Virginia/Colorado/Connecticut/Indiana/Kentucky/Rhode Island** residents may appeal a denial of privacy request
+- **Connecticut** residents gain expanded rights effective July 2026
+
+## 16. Changes to This Privacy Policy
+
+We review and update this Policy at least every 12 months. Material changes will be communicated via email or prominent notice on the Service at least 30 days before taking effect.
+
+Revision History:
+
+{{#each revisionHistory}}
+- {{this.date}} — {{this.description}}
+{{/each}}
+
+## 17. Contact Us
+
+Questions or complaints about this Privacy Policy:
+
+- Email: {{contactEmail}}
+- Phone: {{contactPhone}}
+- Mail: {{operatorAddress}}
+
+You may also file a complaint with the California Privacy Protection Agency (https://cppa.ca.gov) or your state Attorney General.
+
+This Privacy Policy takes effect on {{effectiveDate}}.
