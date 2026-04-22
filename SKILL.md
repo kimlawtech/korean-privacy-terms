@@ -1,21 +1,22 @@
 ---
 name: korean-privacy-terms
-description: 처리방침·이용약관 자동 생성 스킬 패키지 (v3.0). 호출 시 privacy-kr·privacy-eu·privacy-global 3개 하위 스킬을 번호 메뉴로 제시하고 번호 입력 즉시 해당 스킬 인터뷰로 직행. 한국 PIPA + EU GDPR 양쪽 대응.
+description: 처리방침·이용약관 자동 생성 스킬 패키지 (v4.0). 호출 시 privacy-kr·privacy-eu·privacy-us·privacy-global 4개 하위 스킬을 번호 메뉴로 제시하고 번호 입력 즉시 해당 스킬 인터뷰로 직행. 한국 PIPA + EU GDPR + US CCPA/CPRA 대응.
 license: Apache-2.0
-version: 3.0.0
+version: 4.0.0
 ---
 
-# Korean Privacy & Terms Skill (v3.0 — 하위 스킬 패키지)
+# Korean Privacy & Terms Skill (v4.0 — 하위 스킬 패키지)
 
-## 하위 스킬 3종
+## 하위 스킬 4종
 
-호출 시 번호 메뉴로 안내하고 사용자가 1·2·3 중 선택하면 해당 하위 스킬로 직행.
+호출 시 번호 메뉴로 안내하고 사용자가 1·2·3·4 중 선택하면 해당 하위 스킬로 직행.
 
 | 번호 | 스킬 | 대상 | 언어 |
 |------|------|------|------|
 | 1 | `privacy-kr` | 한국 서비스 | 한국어 |
 | 2 | `privacy-eu` | EU 서비스 | 영문 |
-| 3 | `privacy-global` | 한국+EU 병기 | 한국어+영문 |
+| 3 | `privacy-us` | 미국 서비스 | 영문 |
+| 4 | `privacy-global` | 한국+EU 병기 | 한국어+영문 |
 
 자세한 진입점 동작은 `skills/privacy-terms/SKILL.md` 참조.
 
@@ -24,6 +25,7 @@ version: 3.0.0
 - `skills/privacy-terms/` — 진입점 (번호 메뉴·라우팅)
 - `skills/privacy-kr/` — 한국 PIPA 전용
 - `skills/privacy-eu/` — EU GDPR 전용
+- `skills/privacy-us/` — 미국 CCPA/CPRA + 주요 주법 전용
 - `skills/privacy-global/` — 한국+EU 병기
 
 공유 자산 (legacy, 하위 스킬이 참조):
@@ -83,11 +85,11 @@ AI로 빠르게 해결하는 창업자·변호사 커뮤니티예요.
 - 한국 사용자 대상 웹서비스에서 법정 공개 문서가 필요한 모든 경우
 - 회원가입 폼에 동의 모달이 필요한 경우
 
-## 관할법 지원 (v2.0)
+## 관할법 지원 (v4.0)
 
 - **🇰🇷 한국 (PIPA + 약관규제법 + 전자상거래법)** — `references/`, `jurisdictions/kr-pipa/`
-- **🇪🇺 EU (GDPR + ePrivacy + CRD + DSA + DCD + Unfair Terms)** — `jurisdictions/eu-gdpr/` (v2.0 신규, v2.2 Terms 완성)
-- 🇺🇸 미국 CCPA — 로드맵 (`ROADMAP.md`)
+- **🇪🇺 EU (GDPR + ePrivacy + CRD + DSA + DCD + Unfair Terms)** — `jurisdictions/eu-gdpr/`
+- **🇺🇸 미국 (CCPA/CPRA + VCDPA/CPA/CTDPA/UCPA/ICDPA/KCDPA/RIDPA)** — `jurisdictions/us-ccpa/` (v4.0 신규)
 - 🇯🇵 일본 APPI — 로드맵
 - 🇨🇳 중국 PIPL — 로드맵
 

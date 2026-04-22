@@ -2,7 +2,7 @@
 name: privacy-eu
 description: EU 사용자 대상 서비스용 Privacy Notice·Terms of Service·Consent Modal·Cookie Banner 자동 생성. GDPR (Regulation 2016/679) + ePrivacy Directive + Consumer Rights Directive 2011/83 + Digital Services Act + Digital Content Directive + Unfair Terms Directive 반영. 영문 인터뷰로 진행.
 license: Apache-2.0
-version: 3.0.0
+version: 4.0.0
 ---
 
 # privacy-eu — EU GDPR 전용 스킬
