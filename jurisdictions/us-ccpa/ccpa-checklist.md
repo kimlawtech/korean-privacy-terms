@@ -102,20 +102,67 @@ Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia 
   - **2025.1.1 CPI 조정 후**: 일반 **USD 2,663**, 고의·미성년자 관련 **USD 7,988**
   - CPPA가 홀수 연도마다 CPI 기준 재조정 (§1798.199.95(d))
 
-## 기타 주법 주요 차이 (개요, 2026 기준)
+## 기타 주법 상세 비교 (2026년 기준, 공식 출처 검증 완료)
 
-> 아래는 요약이며, 실제 적용 시 각 주법 원문 및 최신 개정 확인 필요. 주 단위로 매출 기준·데이터 기준·권리가 다르므로 로펌 검수 권장.
+> 수치는 각 주 원문·AG 공식 페이지 기준. CCPA 금액은 CPI 조정으로 매년 변동. 그 외 주는 고정 숫자.
 
-| 법 | 발효 | 대략 매출·데이터 기준 | 특수 |
-|---|------|--------------------|------|
-| CCPA/CPRA (CA) | 2020/2023 | $26.625M or 100K records or 50% sale revenue | SPI Limit · Sale & Share 개념 |
-| VCDPA (VA) | 2023 | 100K 거주자 or 25K+50% sale | Private right of action 없음 |
-| CPA (CO) | 2023 | 100K 거주자 or 25K+sale | Universal Opt-Out Mechanism 인정 |
-| CTDPA (CT) | 2023 | 100K 거주자 or 25K+25% sale | 2026.7 확대 예정 |
-| UCPA (UT) | 2023 | $25M 매출 + 100K 거주자 | 권리 범위 좁음 |
-| ICDPA (IN) | **2026.1** | 100K 거주자 기준 | 신규 |
-| KCDPA (KY) | **2026.1** | 100K 거주자 기준 | 신규 |
-| RIDPA (RI) | **2026.1** | 35K 거주자 기준 | 신규, 진입장벽 낮음 |
+### CCPA/CPRA (California, 2020/2023)
+
+- 매출 **USD 26.625M** (2025 CPI 조정) **or** 100K records **or** 50% sale revenue
+- 권리 5개 (Know / Delete / Correct / Opt-out Sale·Share / Limit SPI) + Non-Discrimination + Portability
+- SPI 9개 카테고리 (§1798.140(ae))
+- Private right of action: 데이터 유출 한정
+
+### VCDPA (Virginia, 2023.1 발효)
+
+- 100K 거주자 **or** 25K + 50% 매출이 판매에서 발생
+- 권리 5개: Access · Correct · Delete · Portability · Opt-out (타겟 광고·프로파일링·판매)
+- Private right of action 없음, AG 집행
+- Sensitive data는 **사전 opt-in 동의** 필수 (민감정보 처리 전)
+
+### CPA (Colorado, 2023.7 발효)
+
+- 100K 거주자 **or** 25K + 매출 기여가 판매에서 발생
+- 매출 최소 기준 **없음** (중소기업도 적용 가능)
+- 권리 5개: Access · Correct · Delete · Portability · Opt-out
+- **Universal Opt-Out Mechanism (UOOM) 법적 의무** — GPC 공식 인정 (2024.7 시행)
+
+### CTDPA (Connecticut, 2023.7 발효)
+
+**2026.6.30까지 (기존)**
+- 100K 거주자 **or** 25K + 25% 매출이 판매에서 발생
+- 권리 5개 (VCDPA와 유사)
+
+**2026.7.1부터 (대폭 확대)**
+- 기준을 **35K 거주자**로 대폭 하향 (결제 거래만 하는 데이터 제외)
+- **민감정보 처리하는 회사는 무조건 적용** (규모 무관)
+- **판매하는 회사도 무조건 적용**
+- 미성년자 타겟팅 광고·판매 **절대 금지** (동의 여부 무관)
+- 프로파일링 권리 강화 (결정 재검토 요구권)
+
+### UCPA (Utah, 2023.12 발효)
+
+- **매출 USD 25M + (100K 거주자 or 25K + 50% sale 매출)** — **AND** 조건
+- 권리 4개만 (다른 주보다 좁음): Access · Delete · Portability · Opt-out
+- Correction 권리 **없음**
+- Private right of action 없음
+
+### ICDPA (Indiana, 2026.1.1 신규)
+
+- 100K 거주자 **or** 25K + 50% sale 매출
+- 권리 5개 (VCDPA 모델)
+- AG 집행
+
+### KCDPA (Kentucky, 2026.1.1 신규)
+
+- 100K 거주자 **or** 25K + 50% sale 매출
+- 권리 5개 (VCDPA 모델)
+
+### RIDTPPA/RIDPA (Rhode Island, 2026.1.1 신규)
+
+- **35K 거주자** **or** 10K + 20% sale 매출 — **진입장벽 가장 낮음**
+- 권리 5개
+- AG 집행
 
 ## "Do Not Sell/Share" 이행 방법
 
