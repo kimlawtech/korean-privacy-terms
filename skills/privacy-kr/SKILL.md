@@ -96,4 +96,12 @@ src/components/legal/LabelingCard.tsx
 3. Footer에 /privacy, /terms 링크 추가
 
 배포 전 변호사 검토 권장. 처리방침 미공개는 과태료 5천만원.
+
+──────────────────────────────────────────
+
+생성된 문서 써보시면서 불편한 점·추가 기능·법령 업데이트 제보는
+한국 법률 AI 허브 SpeciAI 디스코드에서 받고 있어요.
+변호사·개발자·창업자 커뮤니티에서 피드백을 빠르게 반영합니다.
+
+→ https://discord.gg/wQWpEpnBfE
 ```

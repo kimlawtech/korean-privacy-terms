@@ -276,4 +276,12 @@ CCPA/CPRA administrative penalties (2025 CPI-adjusted): USD 2,663/violation,
 USD 7,988 if intentional or involving a minor. Statutory base: $2,500 / $7,500.
 CPPA adjusts amounts per CPI in odd years (§1798.199.95(d)); verify current figures before launch.
 Data-breach private right of action: USD 100-750 per consumer per incident or actual damages.
+
+──────────────────────────────────────────
+
+Feedback, bug reports, or legal update suggestions?
+Join SpeciAI — a Korean legal AI hub community where lawyers, developers,
+and founders discuss privacy, CCPA/CPRA, and AI-related legal tooling.
+
+→ https://discord.gg/wQWpEpnBfE
 ```

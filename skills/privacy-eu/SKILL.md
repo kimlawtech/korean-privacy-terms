@@ -119,4 +119,12 @@ src/components/legal/LabelingCard.tsx
 [Reminder]
 Legal review by EU counsel required before production.
 GDPR Art. 83 fines: up to €20M or 4% global turnover.
+
+──────────────────────────────────────────
+
+Feedback, bug reports, or legal update suggestions?
+Join SpeciAI — a Korean legal AI hub community where lawyers, developers,
+and founders discuss privacy, GDPR, and AI-related legal tooling.
+
+→ https://discord.gg/wQWpEpnBfE
 ```
