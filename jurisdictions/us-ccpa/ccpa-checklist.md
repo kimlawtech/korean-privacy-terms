@@ -4,11 +4,13 @@ California Consumer Privacy Act (CCPA, 2018) as amended by the California Privac
 
 Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia VCDPA, Colorado CPA, Connecticut CTDPA, Utah UCPA, Indiana ICDPA, Kentucky KCDPA, Rhode Island RIDPA 등) — 대부분 CCPA와 유사하지만 차이 존재.
 
-## 적용 기준 (CCPA)
+> **주의**: 본 체크리스트의 금액은 2025년 CPI 조정 기준(2025.1.1 발효). CPPA가 매년 1월에 재조정. 배포 전 최신 값 확인 필수.
+
+## 적용 기준 (CCPA §1798.140(d))
 
 다음 중 **하나라도** 충족하는 영리 법인:
-1. 연 매출 USD 25 million 이상
-2. 연간 **100,000명 이상** 캘리포니아 거주자·가구·기기의 개인정보 처리
+1. 직전 회계연도 총 매출 **USD 26,625,000 이상** (2025.1.1 CPI 조정분)
+2. 연간 **100,000명 이상** 캘리포니아 거주자·가구·기기의 개인정보를 구매·판매·공유 처리
 3. 연 매출의 50% 이상을 개인정보 판매·공유로 얻음
 
 ## 필수 공개 항목 (§1798.130, §1798.135)
@@ -43,18 +45,21 @@ Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia 
 
 ## Sensitive Personal Information (SPI, CPRA §1798.140(ae))
 
-### SPI 카테고리 (11종)
+### SPI 카테고리 (9개 paragraph)
 
-1. Social Security Number, Driver's License, State ID, Passport
-2. Financial account, debit/credit card + security code
-3. Precise geolocation (1,850피트 반경 이내)
-4. Racial/ethnic origin, religious/philosophical beliefs, union membership
-5. Contents of email/text/mail (수신자 의도 벗어난 경우)
-6. Genetic data
-7. Biometric information (identification 목적)
-8. Health information
-9. Sex life / sexual orientation
-10. **16세 미만 미성년자의 개인정보** (2026 추가)
+§1798.140(ae)(1)~(9) 공식 목록:
+
+1. **정부 발급 식별자** — Social Security Number, Driver's License, State ID, Passport
+2. **금융 계정 정보** — 계정 번호 + 접근 코드/비밀번호/보안코드 (계좌 접근 가능)
+3. **정확한 지리정보** — 1,850피트(약 564m) 반경 이내
+4. **인종·민족, 종교·철학적 신념, 노동조합 가입**
+5. **메일·이메일·문자 메시지 내용** (수신자가 사업자가 아닌 경우)
+6. **유전자 데이터 (Genetic data)** 및 **신경 데이터 (Neural data)** (2024 추가)
+7. **생체인식 정보** — 고유 식별 목적
+8. **건강 정보**
+9. **성생활·성적 지향 정보**
+
+> 주의: **16세 미만 미성년자 정보**는 SPI 카테고리가 아닌 **§1798.120(c) 별도 옵트인 의무** 조항. 판매·공유 전 opt-in 필수이며 13세 미만은 부모 동의 필요. 별개 이슈로 처리.
 
 ### SPI 처리 제한
 
@@ -70,8 +75,9 @@ Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia 
 1. **ADMT (Automated Decision-Making Technology)** — AI·알고리즘 결정 공개 의무
 2. **Risk Assessments** — 고위험 처리 활동 평가 의무
 3. **Cybersecurity audits** — 대규모 처리자 보안 감사 의무
-4. **16세 미만 정보의 SPI 분류** — 미성년자 보호 강화
-5. **CCPA notices 갱신 주기 명확화** — 12개월
+4. **CCPA notices 갱신 주기 명확화** — 12개월
+
+참고: 16세 미만 정보 관련은 **§1798.120(c)** 옵트인 의무 조항 (SPI 분류와 별개로 기존부터 존재).
 
 ## 판매(Sale) vs 공유(Share)
 
@@ -82,29 +88,34 @@ Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia 
 
 ## 응답 기한
 
-- **Right to Know/Delete/Correct**: 45일 (45일 추가 연장 가능, 총 90일)
-- **Opt-Out 요청**: 15영업일 내 반영
+- **Right to Know / Delete / Correct**: **45 calendar days** 내 실질 응답 (45일 1회 연장 가능, 총 90일)
+  - 접수 확인: **10 business days** 내 필수
+- **Opt-Out of Sale/Share / Limit SPI**: **15 business days** 내 반영
 - **응답 없음 = 위반** 간주
 
 ## Private Right of Action vs 행정 집행
 
 - **Private right of action**: **데이터 유출에 한해서만** (§1798.150)
-  - 위반당 USD 100~750 소비자 직접 소송 가능
+  - 소비자당 USD 100~750 또는 실손해 중 큰 금액
 - **다른 위반**: 캘리포니아 검찰총장 + CPPA가 집행
-  - 위반당 USD 2,500 (일반), USD 7,500 (고의·미성년자)
+  - 법정 기본: §1798.155에서 일반 USD 2,500, 고의·미성년자 관련 USD 7,500
+  - **2025.1.1 CPI 조정 후**: 일반 **USD 2,663**, 고의·미성년자 관련 **USD 7,988**
+  - CPPA가 홀수 연도마다 CPI 기준 재조정 (§1798.199.95(d))
 
-## 기타 주법 주요 차이 (2026)
+## 기타 주법 주요 차이 (개요, 2026 기준)
 
-| 법 | 발효 | 매출 기준 | 권리 | 특수 |
-|---|------|---------|------|------|
-| CCPA/CPRA (CA) | 2020/2023 | $25M / 100K records | 7개 | SPI 제한 · Sale & Share |
-| VCDPA (VA) | 2023 | 100K records or 25K+50% sale | 6개 | private right of action 없음 |
-| CPA (CO) | 2023 | 100K records | 6개 | Universal Opt-Out 인정 |
-| CTDPA (CT) | 2023 | 100K records | 6개 | 2026.7 확대 |
-| UCPA (UT) | 2023 | $25M + 100K | 4개 | 권리 적음 |
-| ICDPA (IN) | **2026.1** | 100K records | 6개 | 신규 |
-| KCDPA (KY) | **2026.1** | 100K records | 6개 | 신규 |
-| RIDPA (RI) | **2026.1** | 35K records | 6개 | 신규, 낮은 기준 |
+> 아래는 요약이며, 실제 적용 시 각 주법 원문 및 최신 개정 확인 필요. 주 단위로 매출 기준·데이터 기준·권리가 다르므로 로펌 검수 권장.
+
+| 법 | 발효 | 대략 매출·데이터 기준 | 특수 |
+|---|------|--------------------|------|
+| CCPA/CPRA (CA) | 2020/2023 | $26.625M or 100K records or 50% sale revenue | SPI Limit · Sale & Share 개념 |
+| VCDPA (VA) | 2023 | 100K 거주자 or 25K+50% sale | Private right of action 없음 |
+| CPA (CO) | 2023 | 100K 거주자 or 25K+sale | Universal Opt-Out Mechanism 인정 |
+| CTDPA (CT) | 2023 | 100K 거주자 or 25K+25% sale | 2026.7 확대 예정 |
+| UCPA (UT) | 2023 | $25M 매출 + 100K 거주자 | 권리 범위 좁음 |
+| ICDPA (IN) | **2026.1** | 100K 거주자 기준 | 신규 |
+| KCDPA (KY) | **2026.1** | 100K 거주자 기준 | 신규 |
+| RIDPA (RI) | **2026.1** | 35K 거주자 기준 | 신규, 진입장벽 낮음 |
 
 ## "Do Not Sell/Share" 이행 방법
 
@@ -117,12 +128,14 @@ Expanded coverage: **19개 이상 미국 주 종합 개인정보법** (Virginia 
 
 ## 제재
 
-### 행정 제재 (CPPA)
-- USD 2,500 per violation (일반)
-- USD 7,500 per violation (intentional or 미성년자)
+### 행정 제재 (CPPA · California AG)
+- **USD 2,663 per violation (일반)** — 2025 CPI 조정 후
+- **USD 7,988 per violation (고의 or 미성년자 관련)** — 2025 CPI 조정 후
+- 법정 기본 숫자는 $2,500 / $7,500 (§1798.155(b))이나 CPPA가 홀수 연도 CPI 조정
+- **다음 조정 예정**: 2027년 (짝수 연도에는 미조정)
 
-### 민사 소송 (유출 한정)
-- USD 100~750 per consumer per incident
+### 민사 소송 (데이터 유출 한정)
+- **USD 100~750 per consumer per incident 또는 실손해 중 큰 금액** (§1798.150(a))
 - Class action 가능
 
 ## 주요 키워드 (검증 시 그렙)
