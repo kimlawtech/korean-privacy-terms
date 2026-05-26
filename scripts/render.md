@@ -308,3 +308,141 @@ src/app/eu/terms/page.tsx                      ← locale="en"
 ```
 
 `app/layout.tsx`에 언어·관할 전환 링크 안내 포함.
+
+---
+
+## APPI 치환 규칙 (v1.0 추가)
+
+관할에 `jp-appi`이 포함되면 다음 추가 규칙을 따른다.
+
+### 사용 템플릿
+
+```
+jurisdictions/jp-appi/privacy-policy.ja.mdx.tmpl  → /jp/privacy
+jurisdictions/jp-appi/terms-of-service.ja.mdx.tmpl → /jp/terms
+```
+
+### 변수 소스
+
+Step 9-JP에서 수집한 값을 그대로 씀. 공통 Step 1~9 변수(`serviceName` 등)는 재사용.
+
+### 조건부 블록 해석
+
+| 템플릿 블록 | 조건 | 처리 |
+|------------|------|------|
+| `{{#if isOverseasOperator}}` | Q9JP-1 또는 Step 8 Q8-3 답 | 해외 사업자·대리인 섹션 유지·삭제 |
+| `{{#if collectsSensitive}}` | Step 2 Q2-2 답 | 요배려개인정보 섹션 유지·삭제 |
+| `{{#if hasInternationalTransfer}}` | Q9JP-3 답 | 외국 제3자 제공 섹션 유지·삭제 |
+| `{{#if hasProcessors}}` | Step 6 답 | 위탁 업체 테이블 유지·삭제 |
+| `{{#if isChildFriendly}}` | Step 8 Q8-1 답 | 아동 섹션 유지 (15세 기준) |
+| `{{#if hasAutomatedDecision}}` | Step 8 Q8-2 답 | 자동화 결정 섹션 유지 |
+| `{{#if providesToThirdParty}}` | Step 5 답 | 제3자 제공 테이블 유지 |
+| `{{#if hasOptOutThirdParty}}` | Q9JP-8 답 | 옵트아웃 제3자 제공 섹션 유지 |
+| `{{#if hasBehavioralAds}}` | Step 8 Q8-5 답 | 행동 광고 쿠키 테이블 유지 |
+| `{{#if hasComplaintDepartment}}` | Q9JP-5 답 | 고충처리 부서 섹션 유지 |
+| `{{#if isSmallBusiness}}` | 자동 추론 (종업원 100명 이하) | 중소기업 특례 문구 유지 |
+| `{{#if isPaidService}}` | Q9JP-6 답 | 결제·요금 섹션 유지 |
+| `{{#if hasSubscription}}` | Q9JP-6 답 | 구독 자동갱신 섹션 유지 |
+| `{{#if isEcommerce}}` | Q9JP-6 답 | 반품·쿨링오프 섹션 유지 |
+| `{{#if isPlatformService}}` | Step 1 Q1-5 또는 Q9JP-6 답 | 콘텐츠 모더레이션 섹션 유지 |
+| `{{#if hasUserGeneratedContent}}` | Step 1 Q1-5 답 | UGC 저작권 섹션 유지 |
+
+### 반복 블록 해석
+
+```handlebars
+{{#each purposes}}
+### {{this.category}}
+{{this.description}}
+{{/each}}
+```
+
+일본어 카테고리명 예시: "会員管理", "サービス提供", "サービス改善", "マーケティング".
+Step 4에서 수집한 한국어 목적을 일본어로 재매핑해서 사용.
+
+```handlebars
+{{#each internationalTransfers}}
+| {{this.country}} | {{this.entity}} | {{this.purpose}} | {{this.safeguard}} |
+{{/each}}
+```
+
+Q9JP-3에서 수집한 배열. `safeguard`는 다음 중 하나로 표기:
+- `consent` → "ご本人の同意"
+- `equivalentProtection` → "同等の保護体制（SOC 2 / ISO 27001等）"
+- `ppcAdequacy` → "個人情報保護委員会の十分性認定国"
+- `needsReview` → "要確認（法的レビュー推奨）"
+
+```handlebars
+{{#each behavioralProviders}}
+| {{this.name}} | {{this.purpose}} | {{this.items}} | {{this.period}} | {{this.country}} |
+{{/each}}
+```
+
+Step 6 + Step 8 Q8-5에서 감지한 행동 광고 업체 목록.
+
+### 파생 변수 자동 계산 (일본 전용)
+
+```
+collectedItemsSummary = 필수+선택 항목명 상위 4~5개 + " 等"
+  예: "氏名、メールアドレス、電話番号、配送先住所 等"
+
+purposesSummary = 카테고리 join(" · ")
+  예: "会員管理 · サービス提供 · サービス改善"
+
+changePriorNotice = "7" (기본값, 중요 변경은 30일 전 권장)
+
+disclosureFee = "無料" (입력 없으면 기본값)
+
+liabilityPeriod = "3" (기본값, 3개월치)
+freeLiabilityCap = "1000" (엔화, 기본값)
+```
+
+### APPI 치환 검증 (Write 후 필수)
+
+`./jurisdictions/jp-appi/appi-checklist.md` 기준으로 다음 키워드 그렙:
+
+**프라이버시 정책 필수 항목**:
+- [ ] 事業者名 / 사업자명
+- [ ] 住所 / 소재지
+- [ ] 代表者 / 대표자
+- [ ] 利用目的 / 이용 목적
+- [ ] 第三者提供 / 제3자 제공
+- [ ] 安全管理措置 / 안전관리조치
+- [ ] 苦情の申出先 / 고충처리 창구
+- [ ] 開示請求 / 열람 청구
+- [ ] プライバシーポリシーの変更 / 개정 절차
+
+**이용약관 필수 항목** (전자상거래인 경우 특정상거래법):
+- [ ] 事業者名
+- [ ] 代表者名
+- [ ] 所在地
+- [ ] 電話番号
+- [ ] 支払方法 (isPaidService=true)
+- [ ] 返品·キャンセル (isEcommerce=true)
+- [ ] 準拠法 / 裁判管轄
+
+### 병기 관할 치환 (kr-pipa + jp-appi)
+
+`jurisdictions: ["kr-pipa", "jp-appi"]`이면 **두 쌍의 파일 생성**:
+
+```
+src/content/legal/privacy-policy.mdx          ← kr-pipa/privacy-policy.ko
+src/content/legal/terms-of-service.mdx        ← kr-pipa/terms-of-service.ko
+src/app/privacy/page.tsx                       ← locale="ko"
+src/app/terms/page.tsx                         ← locale="ko"
+
+src/content/legal/jp/privacy-policy.mdx       ← jp-appi/privacy-policy.ja
+src/content/legal/jp/terms-of-service.mdx     ← jp-appi/terms-of-service.ja
+src/app/jp/privacy/page.tsx                   ← locale="ja"
+src/app/jp/terms/page.tsx                     ← locale="ja"
+```
+
+`src/components/legal/LocaleSwitch.tsx`에 일본어 옵션 추가:
+```tsx
+<LocaleSwitch
+  currentLocale="ko"
+  options={[
+    { locale: "ko", label: "한국어", href: "/privacy" },
+    { locale: "ja", label: "日本語", href: "/jp/privacy" },
+  ]}
+/>
+```
