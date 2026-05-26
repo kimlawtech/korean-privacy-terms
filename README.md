@@ -8,20 +8,20 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-v3%20%7C%20v4-38B2AC)
 [![Discord](https://img.shields.io/badge/Discord-SpeciAI-5865F2)](https://discord.gg/wQWpEpnBfE)
 
-한국 법령 기반 개인정보처리방침·이용약관 자동 생성 Claude Code 스킬.
-2025.4.21 개인정보 처리방침 작성지침 및 2026.3 개정 개인정보보호법 반영.
+한국·일본·EU·미국 법령 기반 개인정보처리방침·이용약관 자동 생성 Claude Code 스킬.
+2025.4.21 개인정보 처리방침 작성지침 및 2026.3 개정 개인정보보호법 반영. 일본 APPI(個人情報保護法) v4.1 신규 지원.
 
 > 한국 법률 AI 허브 **SpeciAI** 에서 만들고 있어요.
 > 계약·노동·투자·지재권을 AI로 해결하는 창업자·변호사 커뮤니티에 초대합니다.
 > → [discord.gg/wQWpEpnBfE](https://discord.gg/wQWpEpnBfE)
 
 **라이선스**: Apache-2.0
-**버전**: 4.0.0
+**버전**: 4.1.0
 **저자**: [@kimlawtech](https://github.com/kimlawtech)
 
-## v3.0 하위 스킬 체계
+## v4.1 하위 스킬 체계
 
-진입점 1개 + 관할별 하위 스킬 3개 구조.
+진입점 1개 + 관할별 하위 스킬 5개 구조.
 
 | 스킬 | 호출 | 용도 |
 |------|------|------|
@@ -29,14 +29,18 @@
 | `privacy-kr` | 직행 | 한국 PIPA 전용 |
 | `privacy-eu` | 직행 | EU GDPR 전용 (영문) |
 | `privacy-us` | 직행 | 미국 CCPA/CPRA 전용 (영문) |
+| `privacy-jp` | 직행 | **일본 APPI 전용 (일본어)** |
 | `privacy-global` | 직행 | 한국+EU 병기 |
+| `privacy-global-jp` | 직행 | **한국+일본 병기** |
 
 ```
-/privacy-terms    → 1·2·3·4 번호 메뉴 → 해당 스킬 호출 안내
-/privacy-kr       → 한국어 인터뷰 직행
-/privacy-eu       → 영문 GDPR 인터뷰 직행
-/privacy-us       → 영문 CCPA/CPRA 인터뷰 직행
-/privacy-global   → 공통+EU 인터뷰로 두 세트 생성
+/privacy-terms      → 1~6 번호 메뉴 → 해당 스킬 호출 안내
+/privacy-kr         → 한국어 인터뷰 직행
+/privacy-eu         → 영문 GDPR 인터뷰 직행
+/privacy-us         → 영문 CCPA/CPRA 인터뷰 직행
+/privacy-jp         → 일본어 APPI 인터뷰 직행
+/privacy-global     → 공통+EU 인터뷰로 두 세트 생성
+/privacy-global-jp  → 공통+APPI 인터뷰로 한·일 두 세트 생성
 ```
 
 ## 특징
@@ -51,17 +55,20 @@
 
 → 이후 Claude가 알아서 한국법·GDPR 중 필요한 질문만 물어봅니다. 평균 10분 이내 완주.
 
-### 🌍 관할법 지원 (v2.0)
+### 🌍 관할법 지원 (v4.1)
 
 - 🇰🇷 **한국 PIPA + 약관규제법 + 전자상거래법**
-- 🇪🇺 **EU GDPR + ePrivacy**
-- 한국+EU **병기** 지원 (글로벌 서비스용)
-- 🇺🇸 CCPA, 🇯🇵 APPI, 🇨🇳 PIPL — 로드맵 (`ROADMAP.md`)
+- 🇪🇺 **EU GDPR + CRD + DSA + ePrivacy**
+- 🇺🇸 **미국 CCPA/CPRA + 주요 주법**
+- 🇯🇵 **일본 APPI + 消費者契約法 + 特定商取引法** (v4.1 신규)
+- 한국+EU / 한국+일본 **병기** 지원
+- 🇨🇳 PIPL — 로드맵 (`ROADMAP.md`)
 
-### 🗣 다국어 출력 (v1.1)
+### 🗣 다국어 출력 (v4.1)
 
-- 한국어 전용 / 영문 전용 / 한·영 병기
-- ConsentModal·CookieBanner의 `locale` prop으로 런타임 전환
+- 한국어 전용 / 영문 전용 / 일본어 전용
+- 한·영 병기 / 한·일 병기
+- ConsentModal·CookieBanner의 `locale` prop으로 런타임 전환 (`ko` | `en` | `ja`)
 
 ### 📋 최신 법령 반영
 
@@ -97,8 +104,8 @@ SaaS · 쇼핑몰 · 커뮤니티 · 블로그 · 핀테크 · AI 서비스 — 
 mkdir -p ~/.claude/skills
 cd ~/.claude/skills
 git clone https://github.com/kimlawtech/korean-privacy-terms.git
-# 하위 스킬 4종을 독립 등록
-for s in privacy-terms privacy-kr privacy-eu privacy-global; do
+# 하위 스킬 전체 등록
+for s in privacy-terms privacy-kr privacy-eu privacy-us privacy-jp privacy-global privacy-global-jp; do
   ln -sf ~/.claude/skills/korean-privacy-terms/skills/$s ~/.claude/skills/$s
 done
 ```
@@ -111,12 +118,12 @@ done
 mkdir -p ~/.codex/skills
 cd ~/.codex/skills
 git clone https://github.com/kimlawtech/korean-privacy-terms.git
-for s in privacy-terms privacy-kr privacy-eu privacy-global; do
+for s in privacy-terms privacy-kr privacy-eu privacy-us privacy-jp privacy-global privacy-global-jp; do
   cp -RL ~/.codex/skills/korean-privacy-terms/skills/$s ~/.codex/skills/$s
 done
 ```
 
-Codex CLI에서 `/skills` 명령으로 확인하거나 `$privacy-eu` 형태로 멘션해 호출.
+Codex CLI에서 `/skills` 명령으로 확인하거나 `$privacy-jp` 형태로 멘션해 호출.
 
 ### 프로젝트 전용 설치
 
@@ -186,18 +193,21 @@ Claude Code에서:
 - **shadcn/ui** (자동 설치 지원)
 - **MDX** (자동 설치 지원)
 
-## 디렉토리 구조 (v3.0)
+## 디렉토리 구조 (v4.1)
 
 ```
 korean-privacy-terms/
 ├── SKILL.md                    # 레거시 진입점 (v2.x 호환)
-├── ROADMAP.md                  # 장기 확장 계획 (CCPA·APPI·PIPL 등)
+├── ROADMAP.md                  # 장기 확장 계획 (PIPL 등)
 │
-├── skills/                     # v3.0 하위 스킬 패키지
+├── skills/                     # v4.1 하위 스킬 패키지
 │   ├── privacy-terms/          # 진입점 스킬 (번호 메뉴 라우팅)
 │   ├── privacy-kr/             # 한국 PIPA 전용
 │   ├── privacy-eu/             # EU GDPR 전용 (영문)
-│   └── privacy-global/         # 한국+EU 병기
+│   ├── privacy-us/             # 미국 CCPA/CPRA 전용 (영문)
+│   ├── privacy-jp/             # 일본 APPI 전용 (일본어) ← v4.1
+│   ├── privacy-global/         # 한국+EU 병기
+│   └── privacy-global-jp/      # 한국+일본 병기 ← v4.1
 │
 ├── jurisdictions/              # 관할법별 법령·템플릿 (공유 자산)
 │   ├── kr-pipa/                # 🇰🇷 한국 PIPA + 약관규제법
@@ -205,13 +215,21 @@ korean-privacy-terms/
 │   │   ├── privacy-policy.en.mdx.tmpl
 │   │   ├── terms-of-service.ko.mdx.tmpl
 │   │   └── terms-of-service.en.mdx.tmpl
-│   └── eu-gdpr/                # 🇪🇺 EU GDPR + CRD + DSA
-│       ├── gdpr-checklist.md
-│       ├── terms-checklist.md
-│       ├── privacy-notice.en.mdx.tmpl
-│       └── terms-of-service.en.mdx.tmpl
+│   ├── eu-gdpr/                # 🇪🇺 EU GDPR + CRD + DSA
+│   │   ├── gdpr-checklist.md
+│   │   ├── terms-checklist.md
+│   │   ├── privacy-notice.en.mdx.tmpl
+│   │   └── terms-of-service.en.mdx.tmpl
+│   ├── us-ccpa/                # 🇺🇸 CCPA/CPRA
+│   │   ├── ccpa-checklist.md
+│   │   └── privacy-policy.en.mdx.tmpl
+│   └── jp-appi/                # 🇯🇵 APPI + 消費者契約法 ← v4.1
+│       ├── appi-checklist.md
+│       ├── privacy-policy.ja.mdx.tmpl
+│       └── terms-of-service.ja.mdx.tmpl
 │
-├── references/                 # 한국법 레퍼런스 (10개)
+├── references/                 # 법령 레퍼런스 (한국 10개 + 일본 1개)
+│   └── appi-jp.md              # 일본 APPI 법령 체크리스트 ← v4.1
 ├── assets/components/          # React 컴포넌트 원본
 ├── assets/config/              # next.config, mdx-components 템플릿
 ├── scripts/                    # interview, render, install 절차
@@ -238,10 +256,16 @@ Pull Request 환영합니다. 특히:
 
 ## 참고 자료
 
+**한국**
 - [개인정보보호위원회](https://www.pipc.go.kr/)
 - [개인정보 처리방침 작성지침 2025.4](https://www.privacy.go.kr/)
 - [공정거래위원회 표준약관](https://www.ftc.go.kr/www/selectBbsNttList.do?bordCd=201&key=202)
 - [국가법령정보센터](https://www.law.go.kr/)
+
+**일본**
+- [個人情報保護委員会 (PPC)](https://www.ppc.go.jp/)
+- [個人情報保護法ガイドライン](https://www.ppc.go.jp/personalinfo/legal/)
+- [消費者庁 特定商取引法](https://www.no-trouble.caa.go.jp/)
 
 ## 커뮤니티 — SpeciAI
 
